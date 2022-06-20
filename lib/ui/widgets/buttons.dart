@@ -47,5 +47,4 @@ class ButtonApp {
     flex: 2,
     fit: FlexFit.tight,
   );
-
 }

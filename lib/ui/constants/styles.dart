@@ -24,11 +24,32 @@ class StyleApp
     fontStyle: FontStyle.normal,
     color: ColorApp.black,
   );
+  static final newhotels=TextStyle(
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w600,
+    fontSize: 20,
+    fontStyle: FontStyle.normal,
+    color: ColorApp.blue,
+  );
   static final alive=TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w400,
     fontSize: 14,
     fontStyle: FontStyle.normal,
     color: ColorApp.grey,
+  );
+  static final numstar=TextStyle(
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    color: ColorApp.black,
+  );
+  static final namehotel=TextStyle(
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    color: ColorApp.black,
   );
 }

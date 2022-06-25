@@ -4,6 +4,8 @@ import 'package:new_hotel_app/ui/constants/styles.dart';
 import 'package:new_hotel_app/ui/widgets/buttons.dart';
 import 'dart:math';
 
+import 'package:new_hotel_app/ui/widgets/textformfield.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -15,7 +17,7 @@ class _LoginPage extends State<LoginPage> {
   @override
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  var _stateEye = false;
+  var _stateEye = true;
 
   void initState() {
     // TODO: implement initState
@@ -31,7 +33,7 @@ class _LoginPage extends State<LoginPage> {
       resizeToAvoidBottomInset: false,
       body: Container(
         height: size.height,
-        width:  size.width,
+        width: size.width,
         color: ColorApp.backgroundApp,
         alignment: Alignment.center,
         child: Column(
@@ -82,15 +84,10 @@ class _LoginPage extends State<LoginPage> {
             ),
             Container(
               padding: EdgeInsets.only(
-                  left: size.width*0.08, right: size.width*0.08),
-              child: TextFormField(
+                  left: size.width * 0.08, right: size.width * 0.08),
+              child: TextForm(
                 controller: _emailController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  labelText: 'Email',
-                  labelStyle: StyleApp.alive,
-                ),
+                text: 'Email',
               ),
             ),
             Container(
@@ -100,7 +97,7 @@ class _LoginPage extends State<LoginPage> {
             ),
             Container(
               padding: EdgeInsets.only(
-                  left: size.width*0.08, right: size.width*0.08),
+                  left: size.width * 0.08, right: size.width * 0.08),
               child: TextFormField(
                 obscureText: _stateEye,
                 controller: _passwordController,
@@ -131,7 +128,8 @@ class _LoginPage extends State<LoginPage> {
               child: Row(
                 children: [ButtonApp.signinButton],
               ),
-              padding: EdgeInsets.only(left: size.width*0.08, right: size.width*0.08),
+              padding: EdgeInsets.only(
+                  left: size.width * 0.08, right: size.width * 0.08),
             )
           ],
         ),

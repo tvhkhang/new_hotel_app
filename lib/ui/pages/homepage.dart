@@ -29,86 +29,105 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    int _currentIndex = 0;
     return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0.0,
-        backgroundColor: ColorApp.backgroundApp,
-        elevation: 0.0,
-        title: Container(
-          padding:
-              EdgeInsets.only(left: size.width * 0.07, top: size.height * 0.01),
-          child: RichText(
-            text: TextSpan(
-                text: 'Hello Linh,\nExplore',
-                style: StyleApp.welcome,
-                children: [
-                  TextSpan(text: ' New Hotels', style: StyleApp.newhotels)
-                ]),
-          ),
-        ),
-        actions: [
-          Container(
+        appBar: AppBar(
+          titleSpacing: 0.0,
+          backgroundColor: ColorApp.backgroundApp,
+          elevation: 0.0,
+          title: Container(
             padding: EdgeInsets.only(
-                right: size.width * 0.05, top: size.height * 0.01),
-            child: Image.asset(
-              'assets/images/1x/add-square.png',
-              height: 24,
-              color: ColorApp.black,
-            ),
-          )
-        ],
-      ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) =>
-                  MyCard(hotelInfo: listHotel[index]),
-              childCount: listHotel.length,
+                left: size.width * 0.07, top: size.height * 0.01),
+            child: RichText(
+              text: TextSpan(
+                  text: 'Hello Linh,\nExplore',
+                  style: StyleApp.welcome,
+                  children: [
+                    TextSpan(text: ' New Hotels', style: StyleApp.newhotels)
+                  ]),
             ),
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/1x/home-2-1.png',
-              height: 20,
+          actions: [
+            Container(
+              padding: EdgeInsets.only(
+                  right: size.width * 0.05, top: size.height * 0.01),
+              child: IconButton(
+                icon: Image.asset(
+                  'assets/images/1x/add-square.png',
+                  height: 24,
+                  color: ColorApp.black,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, 'AddHotelPage');
+                },
+              ),
+            )
+          ],
+        ),
+        body: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) =>
+                    MyCard(hotelInfo: listHotel[index]),
+                childCount: listHotel.length,
+              ),
             ),
-            label: 'Home',
-            backgroundColor: ColorApp.white,
+          ],
+        ),
+        bottomNavigationBar: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/1x/search-normal.png',
-              height: 20,
-            ),
-            label: 'Discover',
-            backgroundColor: ColorApp.white,
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: ColorApp.backgroundApp,
+            elevation: 0,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.only(bottom: size.height * 0.01),
+                  child: Image.asset(
+                    'assets/images/1x/home-2-1.png',
+                  ),
+                ),
+                activeIcon: Image.asset('assets/images/1x/home-2.png'),
+                label: 'Home',
+                backgroundColor: ColorApp.white,
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/1x/search-normal.png',
+                ),
+                label: 'Discover',
+                activeIcon: Image.asset('assets/images/1x/search-normal-1.png'),
+                backgroundColor: ColorApp.white,
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/1x/book-saved.png',
+                ),
+                label: 'Bookmark',
+                activeIcon:
+                    Image.asset('assets/images/1x/book-saved_active.png'),
+                backgroundColor: ColorApp.white,
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/1x/user-square.png',
+                ),
+                label: 'Profile',
+                activeIcon: Image.asset('assets/images/1x/user-square-1.png'),
+                backgroundColor: ColorApp.white,
+              ),
+            ],
+            selectedItemColor: ColorApp.blue,
+            selectedLabelStyle: StyleApp.bottom,
+            unselectedLabelStyle: StyleApp.bottom,
+            showUnselectedLabels: true,
+            currentIndex: _currentIndex,
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/1x/book-saved.png',
-              height: 20,
-            ),
-            label: 'Bookmark',
-            backgroundColor: ColorApp.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/1x/user-square.png',
-              height: 20,
-            ),
-            label: 'Profile',
-            backgroundColor: ColorApp.white,
-          ),
-        ],
-        selectedItemColor: ColorApp.blue,
-        currentIndex: 0,
-        iconSize: size.width*0.05,
-      ),
-    );
+        ));
   }
 }

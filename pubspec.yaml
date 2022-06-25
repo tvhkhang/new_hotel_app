@@ -37,6 +37,8 @@ dependencies:
   flutter_keyboard_size: ^1.0.0+4
   firebase_auth: ^3.3.20
   flutter_rating_bar: ^4.0.1
+  image_picker: ^0.8.5+3
+  dotted_border: ^2.0.0+2
 
 dev_dependencies:
   flutter_test:

@@ -9,6 +9,8 @@ class TextForm extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: TextInputType.multiline,
+      maxLines: null,
       controller: this.controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(

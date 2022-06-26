@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
-import 'package:new_hotel_app/ui/modules/route_name.dart';
+
 class ButtonApp {
   static final signinButton = Flexible(
-    child:  ElevatedButton(
+    child: ElevatedButton(
       child: Text(
         'Sign in',
         style: StyleApp.buttonSignIn,
@@ -30,7 +30,7 @@ class ButtonApp {
           minimumSize: const Size(0, 53),
           primary: ColorApp.backgroundApp,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
       onPressed: () {},
     ),
     flex: 1,
@@ -46,7 +46,7 @@ class ButtonApp {
           minimumSize: const Size(0, 53),
           primary: ColorApp.blue,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
       onPressed: () {},
     ),
     flex: 2,

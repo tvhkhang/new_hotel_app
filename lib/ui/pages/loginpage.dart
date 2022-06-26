@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
-import 'package:new_hotel_app/ui/widgets/buttons.dart';
 import 'dart:math';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_hotel_app/ui/widgets/textformfield.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,20 +13,36 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
-  @override
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   var _stateEye = true;
+  Future SignIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim());
+  }
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final size_inset = MediaQuery.of(context).viewInsets;
+    final size = MediaQuery
+        .of(context)
+        .size;
+    final size_inset = MediaQuery
+        .of(context)
+        .viewInsets;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -126,7 +141,25 @@ class _LoginPage extends State<LoginPage> {
             ),
             Container(
               child: Row(
-                children: [ButtonApp.signinButton],
+                children: [
+                  Flexible(
+                    child: ElevatedButton(
+                      child: Text(
+                        'Sign in',
+                        style: StyleApp.buttonSignIn,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(0, 53),
+                          primary: ColorApp.blue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0))),
+                      onPressed:
+                        SignIn,
+                    ),
+                    flex: 1,
+                    fit: FlexFit.tight,
+                  )
+                ],
               ),
               padding: EdgeInsets.only(
                   left: size.width * 0.08, right: size.width * 0.08),

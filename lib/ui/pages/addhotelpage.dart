@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,6 +31,10 @@ class _AddHotelPage extends State<AddHotelPage> {
     }
   }
 
+  final _hotelNameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _descriptionController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -40,10 +43,6 @@ class _AddHotelPage extends State<AddHotelPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final _hotelNameController = TextEditingController();
-    final _addressController = TextEditingController();
-    final _descriptionController = TextEditingController();
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -145,7 +144,8 @@ class _AddHotelPage extends State<AddHotelPage> {
         padding: EdgeInsets.only(
             left: size.width * 0.07,
             right: size.width * 0.07,
-            bottom: size.height * 0.02,top: size.height * 0.02 ),
+            bottom: size.height * 0.02,
+            top: size.height * 0.02),
         child: Row(
           children: [
             ButtonApp.cancelButton,

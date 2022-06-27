@@ -17,19 +17,27 @@ class _SignUpPage extends State<SignUpPage> {
   final _passwordController = TextEditingController();
   final _password2Controller = TextEditingController();
   var _stateEye = true;
+  var stateSignUp = true;
   var error = " ";
 
   Future<void> SignUp() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text, password: _passwordController.text);
+      stateSignUp = true;
+      error=" ";
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+      stateSignUp = false;
     }
     if (_password2Controller != _passwordController) {
       error = 'Password and confirm password must same';
     }
-      Navigator.pop(context);
+    if (stateSignUp) Navigator.pop(context);
   }
 
   @override

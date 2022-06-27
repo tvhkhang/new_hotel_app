@@ -190,7 +190,7 @@ class _LoginPage extends State<LoginPage> {
               child: Text("Or sign in with",style: StyleApp.alive,
               ),
             ),
-            SizedBox(height: size.height*0.01,),
+            SizedBox(height: size.height*0.02,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

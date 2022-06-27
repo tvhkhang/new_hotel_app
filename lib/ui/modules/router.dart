@@ -4,6 +4,8 @@ import 'package:new_hotel_app/ui/pages/homepage.dart';
 import 'package:new_hotel_app/ui/pages/hoteldetailpage.dart';
 import 'package:new_hotel_app/ui/pages/mappage.dart';
 import 'package:new_hotel_app/ui/pages/addhotelpage.dart';
+import 'package:new_hotel_app/ui/pages/signuppage.dart';
+
 class RouterK {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -17,6 +19,8 @@ class RouterK {
         return MaterialPageRoute(builder: (context) => HomePage());
       case 'MapPage':
         return MaterialPageRoute(builder: (context) => MapPage());
+      case 'SignUpPage':
+        return MaterialPageRoute(builder: (context) => SignUpPage());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(

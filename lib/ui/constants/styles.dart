@@ -50,12 +50,28 @@ class StyleApp {
     fontWeight: FontWeight.w600,
     fontSize: 14,
     fontStyle: FontStyle.normal,
-    color: ColorApp.black, );
-  static final bottom=TextStyle(
-  fontFamily: 'poppins',
-  fontWeight: FontWeight.w400,
-  fontSize: 12,
-  fontStyle: FontStyle.normal,
-  color: ColorApp.grey,
+    color: ColorApp.black,
+  );
+  static final signup = TextStyle(
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    color: ColorApp.blue,
+  );
+
+  static final bottom = TextStyle(
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    fontStyle: FontStyle.normal,
+    color: ColorApp.grey,
+  );
+  static final error = TextStyle(
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    color: Colors.red,
   );
 }

@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -49,21 +46,31 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCL6QypnMA02bmXscCoO2kB9pFo_v97M-A',
+    appId: '1:969272556489:web:a87838effcd34530938618',
+    messagingSenderId: '969272556489',
+    projectId: 'flutter-project-56d54',
+    authDomain: 'flutter-project-56d54.firebaseapp.com',
+    storageBucket: 'flutter-project-56d54.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBim1-iSbP8F1FPZQjFwgpSlTLf00eiDls',
-    appId: '1:259009100962:android:944435e3854db7fb566bfb',
-    messagingSenderId: '259009100962',
-    projectId: 'loginappauth-caf3a',
-    storageBucket: 'loginappauth-caf3a.appspot.com',
+    apiKey: 'AIzaSyCWfsnivAqnrYvltsNznje1acN5lTTuNyE',
+    appId: '1:969272556489:android:bfc00260cb6f01f0938618',
+    messagingSenderId: '969272556489',
+    projectId: 'flutter-project-56d54',
+    storageBucket: 'flutter-project-56d54.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBQUPVoi1bJfjdOdGHZG3Z8qJDPIzQVvMk',
-    appId: '1:259009100962:ios:ff61f1bc20719242566bfb',
-    messagingSenderId: '259009100962',
-    projectId: 'loginappauth-caf3a',
-    storageBucket: 'loginappauth-caf3a.appspot.com',
-    iosClientId: '259009100962-38bbndp3gffete1k4q5j3iisa6ubrf0i.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCSxBP8ME7iKMHlVvPw0VIwYR6qFpJjMJY',
+    appId: '1:969272556489:ios:5b743aae8af5296d938618',
+    messagingSenderId: '969272556489',
+    projectId: 'flutter-project-56d54',
+    storageBucket: 'flutter-project-56d54.appspot.com',
+    androidClientId: '969272556489-kip6m8bfdiifoesgtbg16e0r4un0psin.apps.googleusercontent.com',
+    iosClientId: '969272556489-cih1n81l4oai51ap1sd4vif5sqgkj0hg.apps.googleusercontent.com',
     iosBundleId: 'com.example.newHotelApp',
   );
 }

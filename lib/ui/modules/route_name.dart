@@ -5,4 +5,5 @@ class RouteName
   static final String addHotelPage="AddHotelPage";
   static final String homePage="HomePage";
   static final String mapPage="MapPage";
+  static final String signupPage="SignUpPage";
 }

@@ -36,16 +36,6 @@ class _HomePage extends State<HomePage> {
           titleSpacing: 0.0,
           backgroundColor: ColorApp.backgroundApp,
           elevation: 0.0,
-          leading: IconButton(
-            icon: Image.asset(
-              'assets/images/1x/arrow-left.png',
-              color: ColorApp.black,
-            ),
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-              Navigator.pop(context);
-            },
-          ),
           title: Container(
             padding: EdgeInsets.only(
                 left: size.width * 0.07, top: size.height * 0.01),

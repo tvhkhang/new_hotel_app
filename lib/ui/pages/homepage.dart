@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/infohotel.dart';
@@ -35,6 +36,15 @@ class _HomePage extends State<HomePage> {
           titleSpacing: 0.0,
           backgroundColor: ColorApp.backgroundApp,
           elevation: 0.0,
+          leading: IconButton(
+            icon: Image.asset(
+              'assets/images/1x/arrow-left.png',
+              color: ColorApp.black,
+            ),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+          ),
           title: Container(
             padding: EdgeInsets.only(
                 left: size.width * 0.07, top: size.height * 0.01),
@@ -76,7 +86,7 @@ class _HomePage extends State<HomePage> {
           ],
         ),
         bottomNavigationBar: ClipRRect(
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
           ),

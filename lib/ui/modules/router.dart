@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_hotel_app/ui/pages/home.dart';
 import 'package:new_hotel_app/ui/pages/loginpage.dart';
 import 'package:new_hotel_app/ui/pages/homepage.dart';
 import 'package:new_hotel_app/ui/pages/hoteldetailpage.dart';
@@ -10,17 +11,19 @@ class RouterK {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case 'LoginPage':
-        return MaterialPageRoute(builder: (context) => LoginPage());
+        return MaterialPageRoute(builder: (context) => const LoginPage());
       case 'HotelDetailPage':
-        return MaterialPageRoute(builder: (context) => HotelDetailPage());
+        return MaterialPageRoute(builder: (context) => const HotelDetailPage());
       case 'AddHotelPage':
-        return MaterialPageRoute(builder: (context) => AddHotelPage());
+        return MaterialPageRoute(builder: (context) => const AddHotelPage());
       case 'HomePage':
-        return MaterialPageRoute(builder: (context) => HomePage());
+        return MaterialPageRoute(builder: (context) => const HomePage());
       case 'MapPage':
-        return MaterialPageRoute(builder: (context) => MapPage());
+        return MaterialPageRoute(builder: (context) => const MapPage());
       case 'SignUpPage':
-        return MaterialPageRoute(builder: (context) => SignUpPage());
+        return MaterialPageRoute(builder: (context) => const SignUpPage());
+      case 'Home':
+        return MaterialPageRoute(builder: (context) => const Home());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(

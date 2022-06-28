@@ -6,4 +6,5 @@ class RouteName
   static final String homePage="HomePage";
   static final String mapPage="MapPage";
   static final String signupPage="SignUpPage";
+  static final String home='Home';
 }

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_size/flutter_keyboard_size.dart';
 import 'package:new_hotel_app/services/flutter_services.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
@@ -226,34 +227,13 @@ class _LoginPage extends State<LoginPage> {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim());
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        Navigator.pop(context);
-      } else {
-        Navigator.pushNamed(context, 'HomePage');
-      }
-    });
   }
 
   Future<void> signInFacebook() async {
-    Services().signInWithFacebook();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        Navigator.pop(context);
-      } else {
-        Navigator.pushNamed(context, 'HomePage');
-      }
-    });
+
   }
 
   Future<void> signInGmail() async {
-    Services().signInWithGoogle();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        Navigator.pop(context);
-      } else {
-        Navigator.pushNamed(context, 'HomePage');
-      }
-    });
+    GoogleSignInProvider().googleLogin();
   }
 }

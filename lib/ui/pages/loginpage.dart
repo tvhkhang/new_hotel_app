@@ -86,22 +86,18 @@ class _LoginPage extends State<LoginPage> {
                 children: [
                   Image.asset(
                     'assets/images/1x/logo.png',
-                    height: 127,
+                    height: size.height*0.15,
                   ),
                   Container(
                     child: Image.asset(
                       'assets/images/1x/buildings.png',
-                      height: 100,
+                      height: size.height*0.12,
                     ),
                   )
                 ],
               ),
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.1,
-              ),
-            ),
+            Spacer(flex: 6,),
             Container(
               child: Text(
                 'Welcome to Condotel!',
@@ -114,11 +110,7 @@ class _LoginPage extends State<LoginPage> {
                 style: StyleApp.alive,
               ),
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.05,
-              ),
-            ),
+           Spacer(flex: 3,),
             Container(
               padding: EdgeInsets.only(
                   left: size.width * 0.08, right: size.width * 0.08),
@@ -127,11 +119,7 @@ class _LoginPage extends State<LoginPage> {
                 text: 'Email',
               ),
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.015,
-              ),
-            ),
+            Spacer(flex: 1,),
             Container(
               padding: EdgeInsets.only(
                   left: size.width * 0.08, right: size.width * 0.08),
@@ -156,11 +144,7 @@ class _LoginPage extends State<LoginPage> {
                 ),
               ),
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.03,
-              ),
-            ),
+            Spacer(flex: 2,),
             Container(
               child: Row(
                 children: [
@@ -185,17 +169,18 @@ class _LoginPage extends State<LoginPage> {
               padding: EdgeInsets.only(
                   left: size.width * 0.08, right: size.width * 0.08),
             ),
-            SizedBox(height: size.height*0.05,),
+            Spacer(flex: 1,),
             Center(
               child: Text("Or sign in with",style: StyleApp.alive,
               ),
             ),
-            SizedBox(height: size.height*0.02,),
+            Spacer(flex: 1,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(width: size.width*0.08),
                 Flexible(
+                  flex: 5,
                   fit: FlexFit.tight,
                   child: ElevatedButton(
                     child: Image.asset('assets/images/1x/google.jpg',height: 18,),
@@ -207,8 +192,9 @@ class _LoginPage extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(8.0))),
                   ),
                 ),
-                SizedBox(width: size.width*0.08),
+                Spacer(flex: 1,),
                 Flexible(
+                  flex: 5,
                   fit:FlexFit.tight,
                   child: ElevatedButton(
                     child: Image.asset('assets/images/1x/Facebook.png'),
@@ -223,7 +209,7 @@ class _LoginPage extends State<LoginPage> {
                 SizedBox(width: size.width*0.08),
               ],
             ),
-            SizedBox(height: size.height*0.05,),
+            Spacer(flex: 1,),
             Center(
               child: GestureDetector(
                 child: RichText(
@@ -237,6 +223,7 @@ class _LoginPage extends State<LoginPage> {
                 },
               )
             ),
+            Spacer(flex: 2,)
           ],
         ),
       ),

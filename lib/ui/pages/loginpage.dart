@@ -230,7 +230,7 @@ class _LoginPage extends State<LoginPage> {
   }
 
   Future<void> signInFacebook() async {
-    FacebookSignInProvider().facebookLogin();
+    // FacebookSignInProvider().facebookLogin();
   }
 
   Future<void> signInGmail() async {

@@ -162,7 +162,7 @@ class _LoginPage extends State<LoginPage> {
                     fit:FlexFit.tight,
                     child: ElevatedButton(
                       child: Image.asset('assets/images/1x/Facebook.png'),
-                      onPressed: FacebookSignInProvider().facebookLogin,
+                      onPressed: signInFacebook,
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(0, 53),
                           primary: ColorApp.white,
@@ -229,10 +229,10 @@ class _LoginPage extends State<LoginPage> {
   }
 
   Future<void> signInFacebook() async {
-    // FacebookSignInProvider().facebookLogin();
+    FacebookSignInProvider().signInWithFacebook();
   }
 
   Future<void> signInGmail() async {
-    GoogleSignInProvider().googleLogin();
+    GoogleSignInProvider().signInWithGoogle();
   }
 }

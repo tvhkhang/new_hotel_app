@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_size/flutter_keyboard_size.dart';
 import 'package:new_hotel_app/services/flutter_services.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
@@ -163,7 +162,7 @@ class _LoginPage extends State<LoginPage> {
                     fit:FlexFit.tight,
                     child: ElevatedButton(
                       child: Image.asset('assets/images/1x/Facebook.png'),
-                      onPressed: getCurrentUser,
+                      onPressed: FacebookSignInProvider().facebookLogin,
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(0, 53),
                           primary: ColorApp.white,

@@ -1,10 +1,10 @@
 class RouteName
 {
-  static final String loginPage="LoginPage";
-  static final String hotelDetailPage="HotelDetailPage";
-  static final String addHotelPage="AddHotelPage";
-  static final String homePage="HomePage";
-  static final String mapPage="MapPage";
-  static final String signupPage="SignUpPage";
-  static final String home='Home';
+  static const String loginPage="LoginPage";
+  static const String hotelDetailPage="HotelDetailPage";
+  static const String addHotelPage="AddHotelPage";
+  static const String homePage="HomePage";
+  static const String mapPage="MapPage";
+  static const String signupPage="SignUpPage";
+  static const String home='Home';
 }

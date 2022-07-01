@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_hotel_app/ui/constants/colors.dart';
-import 'package:new_hotel_app/ui/constants/styles.dart';
 
+
+// ignore: must_be_immutable
 class ButtonApp extends StatelessWidget {
   ButtonApp(
       {Key? key,

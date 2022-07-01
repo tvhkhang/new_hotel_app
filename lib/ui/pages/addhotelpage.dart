@@ -57,7 +57,7 @@ class _AddHotelPage extends State<AddHotelPage> {
           },
         ),
         backgroundColor: ColorApp.backgroundApp,
-        title: Text(
+        title: const Text(
           'Add Hotel',
           style: StyleApp.welcome,
         ),
@@ -73,7 +73,7 @@ class _AddHotelPage extends State<AddHotelPage> {
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                Text(
+                const Text(
                   'Hotel Name',
                   style: StyleApp.namehotel,
                 ),
@@ -81,19 +81,20 @@ class _AddHotelPage extends State<AddHotelPage> {
                   height: size.height * 0.01,
                 ),
                 TextForm(
-                    controller: _hotelNameController,
-                    text: 'Input for hotel name'),
+                  controller: _hotelNameController,
+                  text: 'Input for hotel name',
+                ),
                 SizedBox(
                   height: size.height * 0.01,
                 ),
-                Text(
+                const Text(
                   'Do not exceed 40 characters when entering.',
                   style: StyleApp.alive,
                 ),
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                Text(
+                const Text(
                   'Address',
                   style: StyleApp.namehotel,
                 ),
@@ -101,11 +102,13 @@ class _AddHotelPage extends State<AddHotelPage> {
                   height: size.height * 0.01,
                 ),
                 TextForm(
-                    controller: _addressController, text: 'Input for address'),
+                  controller: _addressController,
+                  text: 'Input for address',
+                ),
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                Text(
+                const Text(
                   'Description',
                   style: StyleApp.namehotel,
                 ),
@@ -113,12 +116,13 @@ class _AddHotelPage extends State<AddHotelPage> {
                   height: size.height * 0.01,
                 ),
                 TextForm(
-                    controller: _descriptionController,
-                    text: 'Input for description'),
+                  controller: _descriptionController,
+                  text: 'Input for description',
+                ),
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                Text(
+                const Text(
                   'Hotel Image',
                   style: StyleApp.namehotel,
                 ),

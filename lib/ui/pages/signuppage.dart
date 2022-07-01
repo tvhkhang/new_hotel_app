@@ -20,12 +20,12 @@ class _SignUpPage extends State<SignUpPage> {
   var stateSignUp = true;
   var error = " ";
 
-  Future<void> SignUp() async {
+  Future<void> signUp() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text, password: _passwordController.text);
       stateSignUp = true;
-      error=" ";
+      error = " ";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -55,7 +55,7 @@ class _SignUpPage extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final size_inset = MediaQuery.of(context).viewInsets;
+    final sizeInset = MediaQuery.of(context).viewInsets;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -66,67 +66,71 @@ class _SignUpPage extends State<SignUpPage> {
         alignment: Alignment.center,
         child: Column(
           children: [
-            Container(
-              child: SizedBox(
-                height: max(size.height * 0.1 - size_inset.bottom, 0),
-              ),
+            SizedBox(
+              height: max(size.height * 0.1 - sizeInset.bottom, 0),
             ),
-            Container(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Image.asset(
-                    'assets/images/1x/logo.png',
-                    height: 127,
-                  ),
-                  Container(
-                    child: Image.asset(
-                      'assets/images/1x/buildings.png',
-                      height: 100,
-                    ),
-                  )
-                ],
-              ),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Image.asset(
+                  'assets/images/1x/logo.png',
+                  height: 127,
+                ),
+                Image.asset(
+                  'assets/images/1x/buildings.png',
+                  height: 100,
+                ),
+              ],
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.1,
-              ),
+            SizedBox(
+              height: size.height * 0.1,
             ),
-            Container(
-              child: Text(
-                'Welcome to Condotel!',
-                style: StyleApp.welcome,
-              ),
+            const Text(
+              'Welcome to Condotel!',
+              style: StyleApp.welcome,
             ),
-            Container(
-              child: Text(
-                'Alive with your style of living!',
-                style: StyleApp.alive,
-              ),
+            const Text(
+              'Alive with your style of living!',
+              style: StyleApp.alive,
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.05,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.08, right: size.width * 0.08),
-              child: TextForm(
-                controller: _emailController,
-                text: 'Email',
-              ),
-            ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.015,
-              ),
+            SizedBox(
+              height: size.height * 0.05,
             ),
             Container(
               padding: EdgeInsets.only(
                   left: size.width * 0.08, right: size.width * 0.08),
               child: TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (input) =>
+                    RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                            .hasMatch(input!)
+                        ? null
+                        : 'Check Your Email',
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                controller: _emailController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  label: Text('Email'),
+                  labelStyle: StyleApp.alive,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.015,
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                  left: size.width * 0.08, right: size.width * 0.08),
+              child: TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (input) =>
+                    RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$')
+                            .hasMatch(input!)
+                        ? null
+                        : 'Check Your Password',
                 obscureText: _stateEye,
                 controller: _passwordController,
                 decoration: InputDecoration(
@@ -147,15 +151,20 @@ class _SignUpPage extends State<SignUpPage> {
                 ),
               ),
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.015,
-              ),
+            SizedBox(
+              height: size.height * 0.015,
             ),
             Container(
               padding: EdgeInsets.only(
                   left: size.width * 0.08, right: size.width * 0.08),
               child: TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (input) =>
+                    RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$')
+                                .hasMatch(input!) &&
+                            input == _passwordController.text
+                        ? null
+                        : 'Check Your Confirm Password',
                 obscureText: _stateEye,
                 controller: _password2Controller,
                 decoration: InputDecoration(
@@ -176,17 +185,15 @@ class _SignUpPage extends State<SignUpPage> {
                 ),
               ),
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.03,
-              ),
+            SizedBox(
+              height: size.height * 0.03,
             ),
             Container(
               child: Row(
                 children: [
                   Flexible(
                     child: ElevatedButton(
-                      child: Text(
+                      child: const Text(
                         'Sign up',
                         style: StyleApp.buttonSignIn,
                       ),
@@ -195,7 +202,7 @@ class _SignUpPage extends State<SignUpPage> {
                           primary: ColorApp.blue,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0))),
-                      onPressed: SignUp,
+                      onPressed: signUp,
                     ),
                     flex: 1,
                     fit: FlexFit.tight,
@@ -205,18 +212,15 @@ class _SignUpPage extends State<SignUpPage> {
               padding: EdgeInsets.only(
                   left: size.width * 0.08, right: size.width * 0.08),
             ),
-            Container(
-              child: SizedBox(
-                height: size.height * 0.015,
-              ),
+            SizedBox(
+              height: size.height * 0.015,
             ),
-            Container(
-              child: Center(
-                  child: Text(
+            Center(
+              child: Text(
                 error,
                 style: StyleApp.error,
-              )),
-            )
+              ),
+            ),
           ],
         ),
       ),

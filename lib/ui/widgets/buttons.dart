@@ -2,54 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
 
-class ButtonApp {
-  static final signinButton = Flexible(
-    child: ElevatedButton(
+class ButtonApp extends StatelessWidget {
+  ButtonApp(
+      {Key? key,
+      required this.elevation,
+      required this.text,
+      required this.style,
+      required this.colorbr,
+      required this.colorside,
+      required this.func})
+      : super(key: key);
+  var elevation;
+  var text;
+  var style;
+  var colorbr;
+  var colorside;
+  var func;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
       child: Text(
-        'Sign in',
-        style: StyleApp.buttonSignIn,
+        text,
+        style: style,
       ),
       style: ElevatedButton.styleFrom(
-          minimumSize: const Size(0, 53),
-          primary: ColorApp.blue,
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
-      onPressed: () {},
-    ),
-    flex: 1,
-    fit: FlexFit.tight,
-  );
-
-  static final cancelButton = Flexible(
-    child: ElevatedButton(
-      child: Text(
-        'Cancel',
-        style: StyleApp.buttonCancel,
+        elevation: elevation,
+        minimumSize: const Size(0, 53),
+        primary: colorbr,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          side: BorderSide(
+            color: colorside,
+            width: 1.0,
+            style: BorderStyle.solid,
+          ),
+        ),
       ),
-      style: ElevatedButton.styleFrom(
-          minimumSize: const Size(0, 53),
-          primary: ColorApp.backgroundApp,
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
-      onPressed: () {},
-    ),
-    flex: 1,
-    fit: FlexFit.tight,
-  );
-  static final doneButton = Flexible(
-    child: ElevatedButton(
-      child: Text(
-        'Done',
-        style: StyleApp.buttonSignIn,
-      ),
-      style: ElevatedButton.styleFrom(
-          minimumSize: const Size(0, 53),
-          primary: ColorApp.blue,
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
-      onPressed: () {},
-    ),
-    flex: 2,
-    fit: FlexFit.tight,
-  );
+      onPressed: func,
+    );
+  }
 }

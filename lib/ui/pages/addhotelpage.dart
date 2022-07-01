@@ -148,11 +148,35 @@ class _AddHotelPage extends State<AddHotelPage> {
             top: size.height * 0.02),
         child: Row(
           children: [
-            ButtonApp.cancelButton,
+            Flexible(
+              child: ButtonApp(
+                  elevation: 0.0,
+                  text: 'Cancel',
+                  style: StyleApp.buttonCancel,
+                  colorbr: ColorApp.backgroundApp,
+                  colorside: ColorApp.grey,
+                  func: () {
+                    Navigator.pop(context);
+                  }),
+              flex: 1,
+              fit: FlexFit.tight,
+            ),
             SizedBox(
               width: size.width * 0.035,
             ),
-            ButtonApp.doneButton,
+            Flexible(
+              child: ButtonApp(
+                  elevation: 0.0,
+                  text: 'Done',
+                  style: StyleApp.buttonSignIn,
+                  colorbr: ColorApp.blue,
+                  colorside: ColorApp.blue,
+                  func: () {
+                    Navigator.pop(context);
+                  }),
+              flex: 2,
+              fit: FlexFit.tight,
+            ),
           ],
         ),
       ),

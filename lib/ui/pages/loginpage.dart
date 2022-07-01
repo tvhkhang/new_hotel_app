@@ -16,6 +16,7 @@ class _LoginPage extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   var _stateEye = true;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -29,56 +30,84 @@ class _LoginPage extends State<LoginPage> {
         alignment: Alignment.center,
         child: Column(
           children: [
-            const Spacer(flex: 6,),//0.015
+            const Spacer(
+              flex: 6,
+            ), //0.015
             Flexible(
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
                   Image.asset(
                     'assets/images/1x/logo.png',
-                    height: size.height*0.15,
+                    height: size.height * 0.15,
                   ),
                   Image.asset(
                     'assets/images/1x/buildings.png',
-                    height: size.height*0.12,
+                    height: size.height * 0.12,
                   )
                 ],
               ),
               flex: 10,
             ),
-            const Spacer(flex: 6,),
-            Flexible(
+            const Spacer(
+              flex: 6,
+            ),
+            const Flexible(
               child: Text(
                 'Welcome to Condotel!',
                 style: StyleApp.welcome,
               ),
               flex: 2,
             ),
-            Flexible(
+            const Flexible(
               child: Text(
                 'Alive with your style of living!',
                 style: StyleApp.alive,
               ),
               flex: 2,
             ),
-            const Spacer(flex: 3,),
-            Flexible(
-              child: Container(
-                padding: EdgeInsets.only(
-                    left: size.width * 0.08, right: size.width * 0.08),
-                child: TextForm(
-                  controller: _emailController,
-                  text: 'Email',
-                ),
-              ),
-              flex: 6,
+            const Spacer(
+              flex: 3,
             ),
-            const Spacer(flex: 1,),
             Flexible(
               child: Container(
                 padding: EdgeInsets.only(
                     left: size.width * 0.08, right: size.width * 0.08),
                 child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (input) =>
+                      RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                              .hasMatch(input!)
+                          ? null
+                          : 'Check Your Email',
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    label: Text('Email'),
+                    labelStyle: StyleApp.alive,
+                  ),
+                ),
+              ),
+              flex: 8,
+            ),
+            const Spacer(
+              flex: 1,
+            ),
+            Flexible(
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: size.width * 0.08, right: size.width * 0.08),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (input) =>
+                      RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$')
+                              .hasMatch(input!)
+                          ? null
+                          : 'Check Your Password',
                   obscureText: _stateEye,
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -99,16 +128,18 @@ class _LoginPage extends State<LoginPage> {
                   ),
                 ),
               ),
-              flex: 6,
+              flex: 8,
             ),
-            const Spacer(flex: 2,),
+            const Spacer(
+              flex: 2,
+            ),
             Flexible(
               child: Container(
                 child: Row(
                   children: [
                     Flexible(
                       child: ElevatedButton(
-                        child: Text(
+                        child: const Text(
                           'Sign in',
                           style: StyleApp.buttonSignIn,
                         ),
@@ -129,25 +160,34 @@ class _LoginPage extends State<LoginPage> {
               ),
               flex: 6,
             ),
-            const Spacer(flex: 1,),
-            Flexible(
+            const Spacer(
+              flex: 1,
+            ),
+            const Flexible(
               child: Center(
-                child: Text("Or sign in with",style: StyleApp.alive,
+                child: Text(
+                  "Or sign in with",
+                  style: StyleApp.alive,
                 ),
               ),
               flex: 2,
             ),
-            const Spacer(flex: 1,),
+            const Spacer(
+              flex: 1,
+            ),
             Flexible(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: size.width*0.08),
+                  SizedBox(width: size.width * 0.08),
                   Flexible(
                     flex: 5,
                     fit: FlexFit.tight,
                     child: ElevatedButton(
-                      child: Image.asset('assets/images/1x/google.jpg',height: 18,),
+                      child: Image.asset(
+                        'assets/images/1x/google.jpg',
+                        height: 18,
+                      ),
                       onPressed: signInGmail,
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(0, 53),
@@ -156,10 +196,12 @@ class _LoginPage extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(8.0))),
                     ),
                   ),
-                  const Spacer(flex: 1,),
+                  const Spacer(
+                    flex: 1,
+                  ),
                   Flexible(
                     flex: 5,
-                    fit:FlexFit.tight,
+                    fit: FlexFit.tight,
                     child: ElevatedButton(
                       child: Image.asset('assets/images/1x/Facebook.png'),
                       onPressed: signInFacebook,
@@ -170,62 +212,78 @@ class _LoginPage extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(8.0))),
                     ),
                   ),
-                  SizedBox(width: size.width*0.08),
+                  SizedBox(width: size.width * 0.08),
                 ],
               ),
               flex: 6,
             ),
-            const Spacer(flex: 1,),
+            const Spacer(
+              flex: 1,
+            ),
             Flexible(
               child: Center(
-                child: GestureDetector(
-                  child: RichText(
-                    text: TextSpan(text: 'Don\'t have an account? ',style: StyleApp.alive,
+                  child: GestureDetector(
+                child: RichText(
+                  text: const TextSpan(
+                      text: 'Don\'t have an account? ',
+                      style: StyleApp.alive,
                       children: [
-                        TextSpan(text: 'Sign up here',style: StyleApp.signup)]
-                    ),
-                  ),
-                  onTap:(){
-                    Navigator.pushNamed(context, "SignUpPage");
-                  },
-                )
-              ),
+                        TextSpan(text: 'Sign up here', style: StyleApp.signup)
+                      ]),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, "SignUpPage");
+                },
+              )),
               flex: 2,
             ),
-            const Spacer(flex: 2,)
+            const Spacer(
+              flex: 2,
+            )
           ],
         ),
       ),
     );
   }
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-  void getCurrentUser()
-  {
+
+  void getCurrentUser() {
     final user = FirebaseAuth.instance.currentUser;
-    if (user !=null)
-      {
-        final name=user.displayName;
-        final email=user.email;
-        final photoUrl=user.photoURL;
-        final emailVerified=user.emailVerified;
-        final uid=user.uid;
-        print('name: $name\nemail: $email\nphotoUrl: $photoUrl\nemail: $emailVerified\nuid: $uid');
-      }
+    if (user != null) {
+      final name = user.displayName;
+      final email = user.email;
+      final photoUrl = user.photoURL;
+      final emailVerified = user.emailVerified;
+      final uid = user.uid;
+      print(
+          'name: $name\nemail: $email\nphotoUrl: $photoUrl\nemail: $emailVerified\nuid: $uid');
+    }
   }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
+
   Future<void> signInEmailPass() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+
   }
 
   Future<void> signInFacebook() async {

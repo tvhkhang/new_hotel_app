@@ -49,7 +49,7 @@ class _HomePage extends State<HomePage> {
             padding: EdgeInsets.only(
                 left: size.width * 0.07, top: size.height * 0.01),
             child: RichText(
-              text: const TextSpan(
+              text: TextSpan(
                   text: 'Hello Linh,\nExplore',
                   style: StyleApp.welcome,
                   children: [
@@ -86,7 +86,7 @@ class _HomePage extends State<HomePage> {
           ],
         ),
         bottomNavigationBar: ClipRRect(
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
           ),

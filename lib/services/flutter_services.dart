@@ -1,29 +1,36 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
-  Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  final googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? _user;
+
+  GoogleSignInAccount? get user => _user;
+
+  Future googleLogin() async {
+    final googleUser = await googleSignIn.signIn();
+    if (googleUser == null) return;
+    _user = googleUser;
+    final googleAuth = await googleUser.authentication;
     final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
     );
+    await FirebaseAuth.instance.signInWithCredential(credential);
     notifyListeners();
-    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
 
 class FacebookSignInProvider extends ChangeNotifier {
-  Future<UserCredential> signInWithFacebook() async {
-    final LoginResult loginResult = await FacebookAuth.instance.login();
-    final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.token);
+  Future facebookLogin() async {
+    final result = await FacebookLogin().logIn();
+    if (result.status == FacebookLoginStatus.success) {
+      final credential =
+          FacebookAuthProvider.credential(result.accessToken!.token);
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    }
     notifyListeners();
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
-
-
 }

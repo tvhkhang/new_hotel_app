@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,117 +44,126 @@ class _AddHotelPage extends State<AddHotelPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        elevation: 0,
-        leading: IconButton(
-          icon: Image.asset(
-            'assets/images/1x/arrow-left.png',
-            color: ColorApp.black,
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+            icon: Image.asset(
+              'assets/images/1x/arrow-left.png',
+              color: ColorApp.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          backgroundColor: ColorApp.backgroundApp,
+          title: Text(
+            'Add Hotel',
+            style: StyleApp.welcome,
+          ),
+          centerTitle: true,
         ),
-        backgroundColor: ColorApp.backgroundApp,
-        title: Text(
-          'Add Hotel',
-          style: StyleApp.welcome,
-        ),
-        centerTitle: true,
-      ),
-      body: Container(
-          padding: EdgeInsets.only(
-              right: size.width * 0.07, left: size.width * 0.07),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Text(
-                  'Hotel Name',
-                  style: StyleApp.namehotel,
-                ),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
-                TextForm(
-                    controller: _hotelNameController,
-                    text: 'Input for hotel name'),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
-                Text(
-                  'Do not exceed 40 characters when entering.',
-                  style: StyleApp.alive,
-                ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Text(
-                  'Address',
-                  style: StyleApp.namehotel,
-                ),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
-                TextForm(
-                    controller: _addressController, text: 'Input for address'),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Text(
-                  'Description',
-                  style: StyleApp.namehotel,
-                ),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
-                TextForm(
-                    controller: _descriptionController,
-                    text: 'Input for description'),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Text(
-                  'Hotel Image',
-                  style: StyleApp.namehotel,
-                ),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
-                DottedBorder(
-                  color: ColorApp.black,
-                  strokeWidth: 1,
-                  child: GestureDetector(
-                    child: image != null
-                        ? Image.file(image!, fit: BoxFit.fill)
-                        : Image.asset('assets/images/1x/add_image.png'),
-                    onTap: () {
-                      pickImage();
-                    },
+        body: Container(
+            padding: EdgeInsets.only(
+                right: size.width * 0.07, left: size.width * 0.07),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.02,
                   ),
-                )
-              ],
-            ),
-          )),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.only(
-            left: size.width * 0.07,
-            right: size.width * 0.07,
-            bottom: size.height * 0.02,
-            top: size.height * 0.02),
-        child: Row(
-          children: [
-            ButtonApp.cancelButton,
-            SizedBox(
-              width: size.width * 0.035,
-            ),
-            ButtonApp.doneButton,
-          ],
+                  Text(
+                    'Hotel Name',
+                    style: StyleApp.namehotel,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  TextForm(
+                      controller: _hotelNameController,
+                      text: 'Input for hotel name'),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  Text(
+                    'Do not exceed 40 characters when entering.',
+                    style: StyleApp.alive,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Text(
+                    'Address',
+                    style: StyleApp.namehotel,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  TextForm(
+                      controller: _addressController,
+                      text: 'Input for address'),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Text(
+                    'Description',
+                    style: StyleApp.namehotel,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  TextForm(
+                      controller: _descriptionController,
+                      text: 'Input for description'),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Text(
+                    'Hotel Image',
+                    style: StyleApp.namehotel,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  DottedBorder(
+                    color: ColorApp.black,
+                    strokeWidth: 1,
+                    child: GestureDetector(
+                      child: image != null
+                          ? Image.file(image!, fit: BoxFit.fill)
+                          : Image.asset('assets/images/1x/add_image.png'),
+                      onTap: () {
+                        pickImage();
+                      },
+                    ),
+                  )
+                ],
+              ),
+            )),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.only(
+              left: size.width * 0.07,
+              right: size.width * 0.07,
+              bottom: size.height * 0.02,
+              top: size.height * 0.02),
+          child: Row(
+            children: [
+              ButtonFlexible(onPressed: (){}, text: "Cancel", color: ColorApp.backgroundApp, flex: 1,style: StyleApp.buttonCancel,),
+              SizedBox(
+                width: size.width * 0.035,
+              ),
+              ButtonFlexible(onPressed: (){}, text: "Done", color: ColorApp.blue, flex: 2,style: StyleApp.buttonSignIn,),
+            ],
+          ),
         ),
       ),
     );

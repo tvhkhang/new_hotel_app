@@ -1,58 +1,57 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 
 class StyleApp {
-  static final buttonSignIn = TextStyle(
+  static const  buttonSignIn = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w700,
     fontSize: 14,
     fontStyle: FontStyle.normal,
     color: ColorApp.white,
   );
-  static final buttonCancel = TextStyle(
+  static const  buttonCancel = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w700,
     fontSize: 14,
     fontStyle: FontStyle.normal,
     color: ColorApp.grey,
   );
-  static final welcome = TextStyle(
+  static const welcome = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w600,
     fontSize: 20,
     fontStyle: FontStyle.normal,
     color: ColorApp.black,
   );
-  static final newhotels = TextStyle(
+  static const newhotels = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w600,
     fontSize: 20,
     fontStyle: FontStyle.normal,
     color: ColorApp.blue,
   );
-  static final alive = TextStyle(
+  static const alive = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w400,
     fontSize: 14,
     fontStyle: FontStyle.normal,
     color: ColorApp.grey,
   );
-  static final numstar = TextStyle(
+  static const numstar = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w400,
     fontSize: 14,
     fontStyle: FontStyle.normal,
     color: ColorApp.black,
   );
-  static final namehotel = TextStyle(
+  static const namehotel = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w600,
     fontSize: 14,
     fontStyle: FontStyle.normal,
     color: ColorApp.black,
   );
-  static final signup = TextStyle(
+  static const signup = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w600,
     fontSize: 14,
@@ -60,14 +59,14 @@ class StyleApp {
     color: ColorApp.blue,
   );
 
-  static final bottom = TextStyle(
+  static const bottom = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w400,
     fontSize: 12,
     fontStyle: FontStyle.normal,
     color: ColorApp.grey,
   );
-  static final error = TextStyle(
+  static const error = TextStyle(
     fontFamily: 'poppins',
     fontWeight: FontWeight.w700,
     fontSize: 14,

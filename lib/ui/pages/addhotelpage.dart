@@ -5,6 +5,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:new_hotel_app/services/storage_services.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
 import 'package:new_hotel_app/ui/widgets/buttons.dart';
@@ -28,6 +29,7 @@ class _AddHotelPage extends State<AddHotelPage> {
       final imageTemporary = File(image.path);
       setState(() {
         this.image = imageTemporary;
+        Storage().uploadFile(image.path, 'newhotel');
       });
     } on PlatformException catch (e) {
       print("Failed catch $e");
@@ -177,6 +179,7 @@ class _AddHotelPage extends State<AddHotelPage> {
                     'description': _descriptionController.text
                   };
                   users.doc(_hotelNameController.text).set(json);
+                  Storage().uploadFile(image!.path, _hotelNameController.text).then((value) => print('done'));
                 },
                 text: "Done",
                 color: ColorApp.blue,

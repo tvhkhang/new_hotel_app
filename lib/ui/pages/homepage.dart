@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/infohotel.dart';
@@ -13,19 +15,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+  List<InfoHotel> listHotel = <InfoHotel>[];
+
+  // InfoHotel('assets/images/1x/hotelpic1.png', 'Leslie Alexander', 4,
+  // '1901 Thornridge Cir. Shiloh, Hawaii 81063'),
+  // InfoHotel('assets/images/1x/hotelpic2.png', 'Jenny Wilson', 3,
+  // '4517 Washington Ave. Manchester, Kentucky...'),
+  // InfoHotel('assets/images/1x/hotelpic3.png', 'Leslie Alexander', 2,
+  // '1901 Thornridge Cir. Shiloh, Hawaii 81063'),
+  void fetchData() async {
+    var data = await FirebaseFirestore.instance.collection("hotels").get();
+
+    print(data.docs.length);
+    for (int i = 0; i < data.docs.length; i++) {
+      InfoHotel hotel = InfoHotel(
+        data.docs[i].data()['image'].toString(),
+        data.docs[i].data()['name'].toString(),
+        data.docs[i].data()['star'].toDouble(),
+        data.docs[i].data()['address'].toString(),
+      );
+      listHotel.add(hotel);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    fetchData();
   }
-
-  List<InfoHotel> listHotel = <InfoHotel>[
-    InfoHotel('assets/images/1x/hotelpic1.png', 'Leslie Alexander', 4,
-        '1901 Thornridge Cir. Shiloh, Hawaii 81063'),
-    InfoHotel('assets/images/1x/hotelpic2.png', 'Jenny Wilson', 3,
-        '4517 Washington Ave. Manchester, Kentucky...'),
-    InfoHotel('assets/images/1x/hotelpic3.png', 'Leslie Alexander', 2,
-        '1901 Thornridge Cir. Shiloh, Hawaii 81063'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +93,27 @@ class _HomePage extends State<HomePage> {
         ),
         body: CustomScrollView(
           slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) =>
-                    MyCard(hotelInfo: listHotel[index]),
-                childCount: listHotel.length,
-              ),
+            StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection('hotels').snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) =>
+                        MyCard(hotelInfo: listHotel[index]),
+                    childCount: listHotel.length,
+                  ),
+                );
+              },
             ),
+            // SliverList(
+            //   delegate: SliverChildBuilderDelegate(
+            //     (BuildContext context, int index) =>
+            //         MyCard(hotelInfo: listHotel[index]),
+            //     childCount: listHotel.length,
+            //   ),
+            // ),
           ],
         ),
         bottomNavigationBar: ClipRRect(

@@ -17,7 +17,7 @@ class RouterK {
       case 'AddHotelPage':
         return MaterialPageRoute(builder: (context) => const AddHotelPage());
       case 'HomePage':
-        return MaterialPageRoute(builder: (context) => const HomePage());
+        return MaterialPageRoute(builder: (context) =>  HomePage());
       case 'MapPage':
         return MaterialPageRoute(builder: (context) => const MapPage());
       case 'SignUpPage':

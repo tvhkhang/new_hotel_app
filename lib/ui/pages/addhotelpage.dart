@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,33 +23,18 @@ class _AddHotelPage extends State<AddHotelPage> {
   File? image;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-        Storage().uploadFile(image.path, 'newhotel');
-      });
-    } on PlatformException catch (e) {
-      print("Failed catch $e");
-    }
-  }
-
   final _hotelNameController = TextEditingController();
+
   final _addressController = TextEditingController();
   final _descriptionController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final users = FirebaseFirestore.instance.collection('hotels');
+    final firebaseStorage = FirebaseStorage.instanceFor(
+        app: FirebaseFirestore.instance.app,
+        bucket: 'gs://flutter-project-56d54.appspot.com/');
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -174,12 +160,19 @@ class _AddHotelPage extends State<AddHotelPage> {
               ),
               ButtonFlexible(
                 onPressed: () async {
-                  final json = {
-                    'address': _addressController.text,
-                    'description': _descriptionController.text
-                  };
-                  users.doc(_hotelNameController.text).set(json);
-                  Storage().uploadFile(image!.path, _hotelNameController.text).then((value) => print('done'));
+                  Storage()
+                      .uploadFile(image!.path, _hotelNameController.text)
+                      .then((value) {
+                    print('done');
+                    final json = {
+                      'star': 0.0,
+                      'name': _hotelNameController.text,
+                      'address': _addressController.text,
+                      'description': _descriptionController.text,
+                    };
+                    users.doc(_hotelNameController.text).set(json);
+                    Navigator.pop(context);
+                  });
                 },
                 text: "Done",
                 color: ColorApp.blue,
@@ -191,5 +184,23 @@ class _AddHotelPage extends State<AddHotelPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print("Failed catch $e");
+    }
   }
 }

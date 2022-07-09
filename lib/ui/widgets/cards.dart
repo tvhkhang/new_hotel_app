@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:new_hotel_app/ui/constants/infohotel.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
@@ -8,9 +9,10 @@ class MyCard extends StatelessWidget {
   final InfoHotel hotelInfo;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     final size = MediaQuery.of(context).size;
     final String numOfStar = hotelInfo.numOfStar.toString(); //414x896
+    final storage = FirebaseStorage.instance;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, "HotelDetailPage");
@@ -21,7 +23,7 @@ class MyCard extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                child: Image.asset(hotelInfo.pathPic),
+                // child: Image.network(url),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
                 ),
@@ -38,61 +40,59 @@ class MyCard extends StatelessWidget {
                       style: StyleApp.namehotel,
                     ),
                   ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Image.asset(
-                          'assets/images/1x/star.png',
-                          color: hotelInfo.numOfStar >= 1
-                              ? Colors.amber
-                              : Colors.grey,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.01,
-                        ),
-                        Image.asset(
-                          'assets/images/1x/star.png',
-                          color: hotelInfo.numOfStar >= 2
-                              ? Colors.amber
-                              : Colors.grey,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.01,
-                        ),
-                        Image.asset(
-                          'assets/images/1x/star.png',
-                          color: hotelInfo.numOfStar >= 3
-                              ? Colors.amber
-                              : Colors.grey,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.01,
-                        ),
-                        Image.asset(
-                          'assets/images/1x/star.png',
-                          color: hotelInfo.numOfStar >= 4
-                              ? Colors.amber
-                              : Colors.grey,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.01,
-                        ),
-                        Image.asset(
-                          'assets/images/1x/star.png',
-                          color: hotelInfo.numOfStar >= 5
-                              ? Colors.amber
-                              : Colors.grey,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.02,
-                        ),
-                        Text(
-                          numOfStar,
-                          style: StyleApp.numstar,
-                        ),
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        'assets/images/1x/star.png',
+                        color: hotelInfo.numOfStar >= 1
+                            ? Colors.amber
+                            : Colors.grey,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
+                      Image.asset(
+                        'assets/images/1x/star.png',
+                        color: hotelInfo.numOfStar >= 2
+                            ? Colors.amber
+                            : Colors.grey,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
+                      Image.asset(
+                        'assets/images/1x/star.png',
+                        color: hotelInfo.numOfStar >= 3
+                            ? Colors.amber
+                            : Colors.grey,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
+                      Image.asset(
+                        'assets/images/1x/star.png',
+                        color: hotelInfo.numOfStar >= 4
+                            ? Colors.amber
+                            : Colors.grey,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
+                      Image.asset(
+                        'assets/images/1x/star.png',
+                        color: hotelInfo.numOfStar >= 5
+                            ? Colors.amber
+                            : Colors.grey,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.02,
+                      ),
+                      Text(
+                        numOfStar,
+                        style: StyleApp.numstar,
+                      ),
+                    ],
                   ),
                 ],
               ),

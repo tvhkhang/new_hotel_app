@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,9 +33,7 @@ class _AddHotelPage extends State<AddHotelPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final users = FirebaseFirestore.instance.collection('hotels');
-    final firebaseStorage = FirebaseStorage.instanceFor(
-        app: FirebaseFirestore.instance.app,
-        bucket: 'gs://flutter-project-56d54.appspot.com/');
+    final Storage storage=Storage();
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -149,7 +148,9 @@ class _AddHotelPage extends State<AddHotelPage> {
           child: Row(
             children: [
               ButtonFlexible(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 text: "Cancel",
                 color: ColorApp.backgroundApp,
                 flex: 1,
@@ -160,7 +161,7 @@ class _AddHotelPage extends State<AddHotelPage> {
               ),
               ButtonFlexible(
                 onPressed: () async {
-                  Storage()
+                  storage
                       .uploadFile(image!.path, _hotelNameController.text)
                       .then((value) {
                     print('done');

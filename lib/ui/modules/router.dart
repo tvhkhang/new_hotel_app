@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_hotel_app/ui/pages/draft.dart';
 import 'package:new_hotel_app/ui/pages/home.dart';
 import 'package:new_hotel_app/ui/pages/loginpage.dart';
 import 'package:new_hotel_app/ui/pages/homepage.dart';
@@ -12,6 +13,8 @@ class RouterK {
     switch (settings.name) {
       case 'LoginPage':
         return MaterialPageRoute(builder: (context) => const LoginPage());
+      case 'Draft':
+        return MaterialPageRoute(builder: (context) => const Draft());
       case 'HotelDetailPage':
         return MaterialPageRoute(builder: (context) => const HotelDetailPage());
       case 'AddHotelPage':

@@ -7,4 +7,5 @@ class RouteName
   static const String mapPage="MapPage";
   static const String signupPage="SignUpPage";
   static const String home='Home';
+  static const String draft='Draft';
 }

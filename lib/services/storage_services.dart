@@ -12,4 +12,13 @@ class Storage {
       print(e);
     }
   }
+  Future<ListResult> listFile() async
+  {
+    ListResult results=await storage.ref().listAll();
+    results.items.forEach((Reference ref)
+    {
+      print('Found File: $ref');
+    });
+    return results;
+  }
 }

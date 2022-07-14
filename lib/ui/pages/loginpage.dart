@@ -66,14 +66,14 @@ class _LoginPage extends State<LoginPage> {
                       'Welcome to Condotel!',
                       style: StyleApp.welcome,
                     ),
-                    flex: 2,
+                    flex: 4,
                   ),
                   Flexible(
                     child: Text(
                       'Alive with your style of living!',
                       style: StyleApp.alive,
                     ),
-                    flex: 2,
+                    flex: 3,
                   ),
                   const Spacer(
                     flex: 3,
@@ -160,7 +160,7 @@ class _LoginPage extends State<LoginPage> {
                         style: StyleApp.alive,
                       ),
                     ),
-                    flex: 2,
+                    flex: 3,
                   ),
                   const Spacer(
                     flex: 1,
@@ -227,7 +227,7 @@ class _LoginPage extends State<LoginPage> {
                         Navigator.pushNamed(context, "SignUpPage");
                       },
                     )),
-                    flex: 2,
+                    flex: 3,
                   ),
                   const Spacer(
                     flex: 2,
@@ -268,13 +268,437 @@ class _LoginPage extends State<LoginPage> {
                       ],
                     ),
                     flex: 1,
+                    fit:FlexFit.tight,
+                  ),
+                  Flexible(
+                    child: Column(
+                      children: [
+                        const Spacer(
+                          flex: 6,
+                        ), //0.015
+                        const Spacer(
+                          flex: 6,
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Welcome to Condotel!',
+                            style: StyleApp.welcome,
+                          ),
+                          flex: 4,
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Alive with your style of living!',
+                            style: StyleApp.alive,
+                          ),
+                          flex: 3,
+                        ),
+                        const Spacer(
+                          flex: 3,
+                        ),
+                        Flexible(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.08,
+                                right: size.width * 0.08),
+                            child: TextForm(
+                              controller: _emailController,
+                              text: 'Email',
+                            ),
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.08,
+                                right: size.width * 0.08),
+                            child: TextFormField(
+                              obscureText: _stateEye,
+                              controller: _passwordController,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                                labelText: 'Password',
+                                labelStyle: StyleApp.alive,
+                                suffixIcon: IconButton(
+                                  icon: Image.asset(!_stateEye
+                                      ? 'assets/images/1x/eye.png'
+                                      : 'assets/images/1x/eye-slash.png'),
+                                  onPressed: () {
+                                    setState(() {
+                                      _stateEye = !_stateEye;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 2,
+                        ),
+                        Flexible(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: ElevatedButton(
+                                    child: Text(
+                                      'Sign in',
+                                      style: StyleApp.buttonSignIn,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        minimumSize: const Size(0, 53),
+                                        primary: ColorApp.blue,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(8.0))),
+                                    onPressed: signInEmailPass,
+                                  ),
+                                  flex: 1,
+                                  fit: FlexFit.tight,
+                                )
+                              ],
+                            ),
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.08,
+                                right: size.width * 0.08),
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Center(
+                            child: Text(
+                              "Or sign in with",
+                              style: StyleApp.alive,
+                            ),
+                          ),
+                          flex: 3,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: size.width * 0.08),
+                              Flexible(
+                                flex: 5,
+                                fit: FlexFit.tight,
+                                child: ElevatedButton(
+                                  child: Image.asset(
+                                    'assets/images/1x/google.jpg',
+                                    height: 18,
+                                  ),
+                                  onPressed:
+                                  GoogleSignInProvider().signInWithGoogle,
+                                  style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(0, 53),
+                                      primary: ColorApp.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8.0))),
+                                ),
+                              ),
+                              const Spacer(
+                                flex: 1,
+                              ),
+                              Flexible(
+                                flex: 5,
+                                fit: FlexFit.tight,
+                                child: ElevatedButton(
+                                  child: Image.asset(
+                                      'assets/images/1x/Facebook.png'),
+                                  onPressed:
+                                  FacebookSignInProvider().signInWithFacebook,
+                                  style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(0, 53),
+                                      primary: ColorApp.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8.0))),
+                                ),
+                              ),
+                              SizedBox(width: size.width * 0.08),
+                            ],
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Center(
+                              child: GestureDetector(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: 'Don\'t have an account? ',
+                                      style: StyleApp.alive,
+                                      children: [
+                                        TextSpan(
+                                            text: 'Sign up here',
+                                            style: StyleApp.signup)
+                                      ]),
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(context, "SignUpPage");
+                                },
+                              )),
+                          flex: 3,
+                        ),
+                        const Spacer(
+                          flex: 2,
+                        )
+                      ],
+                    ),
+                    flex: 1,
+                    fit: FlexFit.tight,
                   ),
                 ],
               ),
             ),
           ),
         ),
-        desktop: Text("desk"));
+        desktop: GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+            if (!currentFocus.hasPrimaryFocus) {
+              currentFocus.unfocus();
+            }
+          },
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Container(
+              height: size.height,
+              width: size.width,
+              color: ColorApp.backgroundApp,
+              alignment: Alignment.center,
+              child: Row(
+                children: [
+                  Flexible(
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        Image.asset(
+                          'assets/images/1x/logo.png',
+                          height: size.height * 0.15,
+                        ),
+                        Image.asset(
+                          'assets/images/1x/buildings.png',
+                          height: size.height * 0.12,
+                        )
+                      ],
+                    ),
+                    flex: 1,
+                    fit:FlexFit.tight,
+                  ),
+                  Flexible(
+                    child: Column(
+                      children: [
+                        const Spacer(
+                          flex: 6,
+                        ), //0.015
+                        const Spacer(
+                          flex: 6,
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Welcome to Condotel!',
+                            style: StyleApp.welcome,
+                          ),
+                          flex: 4,
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Alive with your style of living!',
+                            style: StyleApp.alive,
+                          ),
+                          flex: 3,
+                        ),
+                        const Spacer(
+                          flex: 3,
+                        ),
+                        Flexible(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.08,
+                                right: size.width * 0.08),
+                            child: TextForm(
+                              controller: _emailController,
+                              text: 'Email',
+                            ),
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.08,
+                                right: size.width * 0.08),
+                            child: TextFormField(
+                              obscureText: _stateEye,
+                              controller: _passwordController,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                                labelText: 'Password',
+                                labelStyle: StyleApp.alive,
+                                suffixIcon: IconButton(
+                                  icon: Image.asset(!_stateEye
+                                      ? 'assets/images/1x/eye.png'
+                                      : 'assets/images/1x/eye-slash.png'),
+                                  onPressed: () {
+                                    setState(() {
+                                      _stateEye = !_stateEye;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 2,
+                        ),
+                        Flexible(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: ElevatedButton(
+                                    child: Text(
+                                      'Sign in',
+                                      style: StyleApp.buttonSignIn,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        minimumSize: const Size(0, 53),
+                                        primary: ColorApp.blue,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(8.0))),
+                                    onPressed: signInEmailPass,
+                                  ),
+                                  flex: 1,
+                                  fit: FlexFit.tight,
+                                )
+                              ],
+                            ),
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.08,
+                                right: size.width * 0.08),
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Center(
+                            child: Text(
+                              "Or sign in with",
+                              style: StyleApp.alive,
+                            ),
+                          ),
+                          flex: 3,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: size.width * 0.08),
+                              Flexible(
+                                flex: 5,
+                                fit: FlexFit.tight,
+                                child: ElevatedButton(
+                                  child: Image.asset(
+                                    'assets/images/1x/google.jpg',
+                                    height: 18,
+                                  ),
+                                  onPressed:
+                                  GoogleSignInProvider().signInWithGoogle,
+                                  style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(0, 53),
+                                      primary: ColorApp.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8.0))),
+                                ),
+                              ),
+                              const Spacer(
+                                flex: 1,
+                              ),
+                              Flexible(
+                                flex: 5,
+                                fit: FlexFit.tight,
+                                child: ElevatedButton(
+                                  child: Image.asset(
+                                      'assets/images/1x/Facebook.png'),
+                                  onPressed:
+                                  FacebookSignInProvider().signInWithFacebook,
+                                  style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(0, 53),
+                                      primary: ColorApp.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8.0))),
+                                ),
+                              ),
+                              SizedBox(width: size.width * 0.08),
+                            ],
+                          ),
+                          flex: 6,
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Flexible(
+                          child: Center(
+                              child: GestureDetector(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: 'Don\'t have an account? ',
+                                      style: StyleApp.alive,
+                                      children: [
+                                        TextSpan(
+                                            text: 'Sign up here',
+                                            style: StyleApp.signup)
+                                      ]),
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(context, "SignUpPage");
+                                },
+                              )),
+                          flex: 3,
+                        ),
+                        const Spacer(
+                          flex: 2,
+                        )
+                      ],
+                    ),
+                    flex: 1,
+                    fit: FlexFit.tight,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 
   @override
@@ -309,161 +733,5 @@ class _LoginPage extends State<LoginPage> {
   }
 }
 /*
-Column(
-            children: [
-              const Spacer(flex: 6,),//0.015
-              Flexible(
-                child:
-                ),
-                flex: 10,
-              ),
-              const Spacer(flex: 6,),
-              Flexible(
-                child: Text(
-                  'Welcome to Condotel!',
-                  style: StyleApp.welcome,
-                ),
-                flex: 2,
-              ),
-              Flexible(
-                child: Text(
-                  'Alive with your style of living!',
-                  style: StyleApp.alive,
-                ),
-                flex: 2,
-              ),
-              const Spacer(flex: 3,),
-              Flexible(
-                child: Container(
-                  padding: EdgeInsets.only(
-                      left: size.width * 0.08, right: size.width * 0.08),
-                  child: TextForm(
-                    controller: _emailController,
-                    text: 'Email',
-                  ),
-                ),
-                flex: 6,
-              ),
-              const Spacer(flex: 1,),
-              Flexible(
-                child: Container(
-                  padding: EdgeInsets.only(
-                      left: size.width * 0.08, right: size.width * 0.08),
-                  child: TextFormField(
-                    obscureText: _stateEye,
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                      labelText: 'Password',
-                      labelStyle: StyleApp.alive,
-                      suffixIcon: IconButton(
-                        icon: Image.asset(!_stateEye
-                            ? 'assets/images/1x/eye.png'
-                            : 'assets/images/1x/eye-slash.png'),
-                        onPressed: () {
-                          setState(() {
-                            _stateEye = !_stateEye;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                flex: 6,
-              ),
-              const Spacer(flex: 2,),
-              Flexible(
-                child: Container(
-                  child: Row(
-                    children: [
-                      Flexible(
-                        child: ElevatedButton(
-                          child: Text(
-                            'Sign in',
-                            style: StyleApp.buttonSignIn,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(0, 53),
-                              primary: ColorApp.blue,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0))),
-                          onPressed: signInEmailPass,
-                        ),
-                        flex: 1,
-                        fit: FlexFit.tight,
-                      )
-                    ],
-                  ),
-                  padding: EdgeInsets.only(
-                      left: size.width * 0.08, right: size.width * 0.08),
-                ),
-                flex: 6,
-              ),
-              const Spacer(flex: 1,),
-              Flexible(
-                child: Center(
-                  child: Text("Or sign in with",style: StyleApp.alive,
-                  ),
-                ),
-                flex: 2,
-              ),
-              const Spacer(flex: 1,),
-              Flexible(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: size.width*0.08),
-                    Flexible(
-                      flex: 5,
-                      fit: FlexFit.tight,
-                      child: ElevatedButton(
-                        child: Image.asset('assets/images/1x/google.jpg',height: 18,),
-                        onPressed: GoogleSignInProvider().signInWithGoogle,
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(0, 53),
-                            primary: ColorApp.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0))),
-                      ),
-                    ),
-                    const Spacer(flex: 1,),
-                    Flexible(
-                      flex: 5,
-                      fit:FlexFit.tight,
-                      child: ElevatedButton(
-                        child: Image.asset('assets/images/1x/Facebook.png'),
-                        onPressed: FacebookSignInProvider().signInWithFacebook,
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(0, 53),
-                            primary: ColorApp.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0))),
-                      ),
-                    ),
-                    SizedBox(width: size.width*0.08),
-                  ],
-                ),
-                flex: 6,
-              ),
-              const Spacer(flex: 1,),
-              Flexible(
-                child: Center(
-                    child: GestureDetector(
-                      child: RichText(
-                        text: TextSpan(text: 'Don\'t have an account? ',style: StyleApp.alive,
-                            children: [
-                              TextSpan(text: 'Sign up here',style: StyleApp.signup)]
-                        ),
-                      ),
-                      onTap:(){
-                        Navigator.pushNamed(context, "SignUpPage");
-                      },
-                    )
-                ),
-                flex: 2,
-              ),
-              const Spacer(flex: 2,)
-            ],
-          )
+
 */

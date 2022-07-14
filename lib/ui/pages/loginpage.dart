@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_hotel_app/services/flutter_services.dart';
+import 'package:new_hotel_app/ui/constants/assets.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
 import 'package:new_hotel_app/ui/modules/responsive.dart';
@@ -105,9 +107,9 @@ class _LoginPage extends State<LoginPage> {
                           labelText: 'Password',
                           labelStyle: StyleApp.alive,
                           suffixIcon: IconButton(
-                            icon: Image.asset(!_stateEye
-                                ? 'assets/images/1x/eye.png'
-                                : 'assets/images/1x/eye-slash.png'),
+                            icon: SvgPicture.asset(!_stateEye
+                                ? Assets.eyeOpen
+                                : Assets.eyeClose),
                             onPressed: () {
                               setState(() {
                                 _stateEye = !_stateEye;
@@ -193,7 +195,7 @@ class _LoginPage extends State<LoginPage> {
                           flex: 5,
                           fit: FlexFit.tight,
                           child: ElevatedButton(
-                            child: Image.asset('assets/images/1x/Facebook.png'),
+                            child: SvgPicture.asset(Assets.facebook),
                             onPressed:
                                 FacebookSignInProvider().signInWithFacebook,
                             style: ElevatedButton.styleFrom(
@@ -325,9 +327,9 @@ class _LoginPage extends State<LoginPage> {
                                 labelText: 'Password',
                                 labelStyle: StyleApp.alive,
                                 suffixIcon: IconButton(
-                                  icon: Image.asset(!_stateEye
-                                      ? 'assets/images/1x/eye.png'
-                                      : 'assets/images/1x/eye-slash.png'),
+                                  icon:  SvgPicture.asset(!_stateEye
+                                      ? Assets.eyeOpen
+                                      : Assets.eyeClose),
                                   onPressed: () {
                                     setState(() {
                                       _stateEye = !_stateEye;
@@ -416,8 +418,7 @@ class _LoginPage extends State<LoginPage> {
                                 flex: 5,
                                 fit: FlexFit.tight,
                                 child: ElevatedButton(
-                                  child: Image.asset(
-                                      'assets/images/1x/Facebook.png'),
+                                  child: SvgPicture.asset(Assets.facebook),
                                   onPressed:
                                   FacebookSignInProvider().signInWithFacebook,
                                   style: ElevatedButton.styleFrom(
@@ -556,9 +557,9 @@ class _LoginPage extends State<LoginPage> {
                                 labelText: 'Password',
                                 labelStyle: StyleApp.alive,
                                 suffixIcon: IconButton(
-                                  icon: Image.asset(!_stateEye
-                                      ? 'assets/images/1x/eye.png'
-                                      : 'assets/images/1x/eye-slash.png'),
+                                  icon:  SvgPicture.asset(!_stateEye
+                                      ? Assets.eyeOpen
+                                      : Assets.eyeClose),
                                   onPressed: () {
                                     setState(() {
                                       _stateEye = !_stateEye;
@@ -647,8 +648,7 @@ class _LoginPage extends State<LoginPage> {
                                 flex: 5,
                                 fit: FlexFit.tight,
                                 child: ElevatedButton(
-                                  child: Image.asset(
-                                      'assets/images/1x/Facebook.png'),
+                                  child: SvgPicture.asset(Assets.facebook),
                                   onPressed:
                                   FacebookSignInProvider().signInWithFacebook,
                                   style: ElevatedButton.styleFrom(

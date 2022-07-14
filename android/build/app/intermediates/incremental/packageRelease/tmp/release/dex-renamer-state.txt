@@ -1,0 +1,4 @@
+#Thu Jul 14 23:36:50 GMT+07:00 2022
+base.0=C\:\\Users\\Admin\\OneDrive\\Desktop\\flutter\\myapp\\new_hotel_app\\android\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

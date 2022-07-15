@@ -77,12 +77,8 @@ class _SignUpPage extends State<SignUpPage> {
             alignment: Alignment.center,
             child: Column(
               children: [
-                Container(
-                  child: SizedBox(
-                    height: max(size.height * 0.1 - size_inset.bottom, 0),
-                  ),
-                ),
-                Container(
+                Spacer(flex: 5,),
+                Flexible(
                   child: Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
@@ -98,120 +94,123 @@ class _SignUpPage extends State<SignUpPage> {
                       )
                     ],
                   ),
+                  flex: 8,
                 ),
-                Container(
-                  child: SizedBox(
-                    height: size.height * 0.1,
-                  ),
+                Spacer(
+                  flex: 2,
                 ),
-                Container(
+                Flexible(
                   child: Text(
                     S.of(context).Welcome,
                     style: StyleApp.welcome,
                   ),
+                  flex: 2,
                 ),
-                Container(
+                Flexible(
                   child: Text(
                     S.of(context).Alive,
                     style: StyleApp.alive,
                   ),
+                  flex: 2,
                 ),
-                Container(
-                  child: SizedBox(
-                    height: size.height * 0.05,
+                const Spacer(
+                  flex: 2,
+                ),
+                Flexible(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        left: size.width * 0.08, right: size.width * 0.08),
+                    child: TextForm(
+                      controller: _emailController,
+                      text: S.of(context).Email,
+                    ),
                   ),
+                  flex: 4,
                 ),
-                Container(
-                  padding: EdgeInsets.only(
-                      left: size.width * 0.08, right: size.width * 0.08),
-                  child: TextForm(
-                    controller: _emailController,
-                    text: S.of(context).Email,
-                  ),
+                Spacer(
+                  flex: 1,
                 ),
-                Container(
-                  child: SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(
-                      left: size.width * 0.08, right: size.width * 0.08),
-                  child: TextFormField(
-                    obscureText: _stateEye,
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                      labelText: S.of(context).Password,
-                      labelStyle: StyleApp.alive,
-                      suffixIcon: IconButton(
-                        icon: Image.asset(!_stateEye
-                            ? 'assets/images/1x/eye.png'
-                            : 'assets/images/1x/eye-slash.png'),
-                        onPressed: () {
-                          setState(() {
-                            _stateEye = !_stateEye;
-                          });
-                        },
+                Flexible(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        left: size.width * 0.08, right: size.width * 0.08),
+                    child: TextFormField(
+                      obscureText: _stateEye,
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        labelText: S.of(context).Password,
+                        labelStyle: StyleApp.alive,
+                        suffixIcon: IconButton(
+                          icon: Image.asset(!_stateEye
+                              ? 'assets/images/1x/eye.png'
+                              : 'assets/images/1x/eye-slash.png'),
+                          onPressed: () {
+                            setState(() {
+                              _stateEye = !_stateEye;
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
+                  flex: 4,
                 ),
-                Container(
-                  child: SizedBox(
-                    height: size.height * 0.015,
-                  ),
+                Spacer(
+                  flex: 1,
                 ),
-                Container(
-                  padding: EdgeInsets.only(
-                      left: size.width * 0.08, right: size.width * 0.08),
-                  child: TextFormField(
-                    obscureText: _stateEye,
-                    controller: _password2Controller,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                      labelText: S.of(context).Repassword,
-                      labelStyle: StyleApp.alive,
-                      suffixIcon: IconButton(
-                        icon: Image.asset(!_stateEye
-                            ? 'assets/images/1x/eye.png'
-                            : 'assets/images/1x/eye-slash.png'),
-                        onPressed: () {
-                          setState(() {
-                            _stateEye = !_stateEye;
-                          });
-                        },
+                Flexible(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        left: size.width * 0.08, right: size.width * 0.08),
+                    child: TextFormField(
+                      obscureText: _stateEye,
+                      controller: _password2Controller,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        labelText: S.of(context).Repassword,
+                        labelStyle: StyleApp.alive,
+                        suffixIcon: IconButton(
+                          icon: Image.asset(!_stateEye
+                              ? 'assets/images/1x/eye.png'
+                              : 'assets/images/1x/eye-slash.png'),
+                          onPressed: () {
+                            setState(() {
+                              _stateEye = !_stateEye;
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
+                  flex: 4,
                 ),
-                Container(
-                  child: SizedBox(
-                    height: size.height * 0.03,
+                Spacer(
+                  flex: 1,
+                ),
+                Flexible(
+                  child: Container(
+                    child: Row(
+                      children: [
+                        ButtonFlexible(
+                            onPressed: SignUp,
+                            text: S.of(context).Signup,
+                            color: ColorApp.blue,
+                            flex: 1,
+                            style: StyleApp.buttonSignIn),
+                      ],
+                    ),
+                    padding: EdgeInsets.only(
+                        left: size.width * 0.08, right: size.width * 0.08),
                   ),
+                  flex: 4,
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      ButtonFlexible(
-                          onPressed: SignUp,
-                          text: S.of(context).Signup,
-                          color: ColorApp.blue,
-                          flex: 1,
-                          style: StyleApp.buttonSignIn),
-                    ],
-                  ),
-                  padding: EdgeInsets.only(
-                      left: size.width * 0.08, right: size.width * 0.08),
+                Spacer(
+                  flex: 1,
                 ),
-                Container(
-                  child: SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                ),
-                Container(
+                Flexible(
                   child: Center(
                       child: Text(
                     error,

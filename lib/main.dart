@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
 import 'package:new_hotel_app/ui/modules/route_name.dart';
 import 'package:new_hotel_app/ui/modules/router.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,11 +27,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var platform = Theme.of(context).platform;
     if (!kIsWeb) {
       FlutterNativeSplash.remove();
     }
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       locale: new Locale('vi'),
       localizationsDelegates: [

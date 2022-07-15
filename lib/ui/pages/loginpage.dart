@@ -9,7 +9,6 @@ import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
 import 'package:new_hotel_app/ui/modules/responsive.dart';
 import 'package:new_hotel_app/ui/widgets/textformfield.dart';
-import 'package:new_hotel_app/generated/l10n.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,7 +27,6 @@ class _LoginPage extends State<LoginPage> {
     final size = MediaQuery
         .of(context)
         .size;
-
     return Responsive(
       mobile: GestureDetector(
         onTap: () {
@@ -49,7 +47,8 @@ class _LoginPage extends State<LoginPage> {
               ),
               IconButton(
                 onPressed: () {
-                  var locale = Locale('en', '');
+                  var currentLang=Localizations.localeOf(context);
+                  var locale = Locale((currentLang==Locale('en'))?'vi':'en', '');
                   Get.updateLocale(locale);
                 },
                 icon: SvgPicture.asset(Assets.language),

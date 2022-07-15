@@ -6,7 +6,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:new_hotel_app/ui/modules/route_name.dart';
 import 'package:new_hotel_app/ui/modules/router.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'firebase_options.dart';
 import 'package:new_hotel_app/generated/l10n.dart';
 bool shouldUseFirestoreEmulator = false;

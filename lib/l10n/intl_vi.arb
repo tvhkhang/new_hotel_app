@@ -5,12 +5,15 @@
   "@helloWorld": {
     "description": "xin chào bạn!"
   },
-  "Welcome to Condotel!" : "Welcome to Condotel!",
-  "Alive with your style of living!" : "Alive with your style of living!",
+  "Welcome" : "Chào mừng đến với Codotel!",
+  "Alive" : "Sống với phong cách sống của bạn!",
   "Email": "Email",
-  "Password" : "Password",
-  "Sign in" : "Sign in",
-  "Or sign in with": "Or sign in with",
-  "Don\\'t have an account? ": "Don\\'t have an account? ",
-  "Sign up here": "Sign up here"
+  "Password" : "Mật Khẩu",
+  "Repassword" : "Xác nhận mật khẩu",
+  "Signi" : "Đăng Nhập",
+  "Or": "Hoặc đăng nhập với",
+  "Don": "Bạn không có tài khoản? ",
+  "Signu": "Đăng kí tại đây",
+  "Signup": "Đăng kí"
+
 }

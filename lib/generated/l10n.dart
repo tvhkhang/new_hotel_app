@@ -60,7 +60,105 @@ class S {
     );
   }
 
-  // skipped getter for the 'Welcome to Condotel!' key
+  /// `Welcome to Condotel!`
+  String get Welcome {
+    return Intl.message(
+      'Welcome to Condotel!',
+      name: 'Welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alive with your style of living!`
+  String get Alive {
+    return Intl.message(
+      'Alive with your style of living!',
+      name: 'Alive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get Email {
+    return Intl.message(
+      'Email',
+      name: 'Email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get Password {
+    return Intl.message(
+      'Password',
+      name: 'Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get Repassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'Repassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in`
+  String get Signi {
+    return Intl.message(
+      'Sign in',
+      name: 'Signi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or sign in with`
+  String get Or {
+    return Intl.message(
+      'Or sign in with',
+      name: 'Or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don\'t have an account? `
+  String get Don {
+    return Intl.message(
+      'Don\\\'t have an account? ',
+      name: 'Don',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up here`
+  String get Signu {
+    return Intl.message(
+      'Sign up here',
+      name: 'Signu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up`
+  String get Signup {
+    return Intl.message(
+      'Sign up',
+      name: 'Signup',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

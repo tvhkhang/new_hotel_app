@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_hotel_app/generated/l10n.dart';
 import 'package:new_hotel_app/services/flutter_services.dart';
 import 'package:new_hotel_app/ui/constants/assets.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
 import 'package:new_hotel_app/ui/modules/responsive.dart';
 import 'package:new_hotel_app/ui/widgets/textformfield.dart';
+import 'package:new_hotel_app/generated/l10n.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -65,14 +67,14 @@ class _LoginPage extends State<LoginPage> {
                   ),
                   Flexible(
                     child: Text(
-                      'Welcome to Condotel!',
+                      S.of(context).Welcome,
                       style: StyleApp.welcome,
                     ),
                     flex: 4,
                   ),
                   Flexible(
                     child: Text(
-                      'Alive with your style of living!',
+                      S.of(context).Alive,
                       style: StyleApp.alive,
                     ),
                     flex: 3,
@@ -86,7 +88,7 @@ class _LoginPage extends State<LoginPage> {
                           left: size.width * 0.08, right: size.width * 0.08),
                       child: TextForm(
                         controller: _emailController,
-                        text: 'Email',
+                        text: S.of(context).Email,
                       ),
                     ),
                     flex: 6,
@@ -104,7 +106,7 @@ class _LoginPage extends State<LoginPage> {
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8)),
-                          labelText: 'Password',
+                          labelText: S.of(context).Password,
                           labelStyle: StyleApp.alive,
                           suffixIcon: IconButton(
                             icon: SvgPicture.asset(!_stateEye
@@ -131,7 +133,7 @@ class _LoginPage extends State<LoginPage> {
                           Flexible(
                             child: ElevatedButton(
                               child: Text(
-                                'Sign in',
+                                S.of(context).Signi,
                                 style: StyleApp.buttonSignIn,
                               ),
                               style: ElevatedButton.styleFrom(
@@ -158,7 +160,7 @@ class _LoginPage extends State<LoginPage> {
                   Flexible(
                     child: Center(
                       child: Text(
-                        "Or sign in with",
+                        S.of(context).Or,
                         style: StyleApp.alive,
                       ),
                     ),
@@ -218,11 +220,11 @@ class _LoginPage extends State<LoginPage> {
                         child: GestureDetector(
                       child: RichText(
                         text: TextSpan(
-                            text: 'Don\'t have an account? ',
+                            text: S.of(context).Don,
                             style: StyleApp.alive,
                             children: [
                               TextSpan(
-                                  text: 'Sign up here', style: StyleApp.signup)
+                                  text: S.of(context).Signu, style: StyleApp.signup)
                             ]),
                       ),
                       onTap: () {
@@ -283,14 +285,14 @@ class _LoginPage extends State<LoginPage> {
                         ),
                         Flexible(
                           child: Text(
-                            'Welcome to Condotel!',
+                            S.of(context).Welcome,
                             style: StyleApp.welcome,
                           ),
                           flex: 4,
                         ),
                         Flexible(
                           child: Text(
-                            'Alive with your style of living!',
+                            S.of(context).Alive,
                             style: StyleApp.alive,
                           ),
                           flex: 3,
@@ -305,7 +307,7 @@ class _LoginPage extends State<LoginPage> {
                                 right: size.width * 0.08),
                             child: TextForm(
                               controller: _emailController,
-                              text: 'Email',
+                              text: S.of(context).Email,
                             ),
                           ),
                           flex: 6,
@@ -324,7 +326,7 @@ class _LoginPage extends State<LoginPage> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8)),
-                                labelText: 'Password',
+                                labelText: S.of(context).Password,
                                 labelStyle: StyleApp.alive,
                                 suffixIcon: IconButton(
                                   icon:  SvgPicture.asset(!_stateEye
@@ -351,7 +353,7 @@ class _LoginPage extends State<LoginPage> {
                                 Flexible(
                                   child: ElevatedButton(
                                     child: Text(
-                                      'Sign in',
+                                      S.of(context).Signi,
                                       style: StyleApp.buttonSignIn,
                                     ),
                                     style: ElevatedButton.styleFrom(
@@ -379,7 +381,7 @@ class _LoginPage extends State<LoginPage> {
                         Flexible(
                           child: Center(
                             child: Text(
-                              "Or sign in with",
+                              S.of(context).Or,
                               style: StyleApp.alive,
                             ),
                           ),
@@ -442,11 +444,11 @@ class _LoginPage extends State<LoginPage> {
                               child: GestureDetector(
                                 child: RichText(
                                   text: TextSpan(
-                                      text: 'Don\'t have an account? ',
+                                      text: S.of(context).Don,
                                       style: StyleApp.alive,
                                       children: [
                                         TextSpan(
-                                            text: 'Sign up here',
+                                            text: S.of(context).Signu,
                                             style: StyleApp.signup)
                                       ]),
                                 ),
@@ -513,14 +515,14 @@ class _LoginPage extends State<LoginPage> {
                         ),
                         Flexible(
                           child: Text(
-                            'Welcome to Condotel!',
+                            S.of(context).Welcome,
                             style: StyleApp.welcome,
                           ),
                           flex: 4,
                         ),
                         Flexible(
                           child: Text(
-                            'Alive with your style of living!',
+                            S.of(context).Alive,
                             style: StyleApp.alive,
                           ),
                           flex: 3,
@@ -535,7 +537,7 @@ class _LoginPage extends State<LoginPage> {
                                 right: size.width * 0.08),
                             child: TextForm(
                               controller: _emailController,
-                              text: 'Email',
+                              text: S.of(context).Email,
                             ),
                           ),
                           flex: 6,
@@ -554,7 +556,7 @@ class _LoginPage extends State<LoginPage> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8)),
-                                labelText: 'Password',
+                                labelText: S.of(context).Password,
                                 labelStyle: StyleApp.alive,
                                 suffixIcon: IconButton(
                                   icon:  SvgPicture.asset(!_stateEye
@@ -581,7 +583,7 @@ class _LoginPage extends State<LoginPage> {
                                 Flexible(
                                   child: ElevatedButton(
                                     child: Text(
-                                      'Sign in',
+                                      S.of(context).Signi,
                                       style: StyleApp.buttonSignIn,
                                     ),
                                     style: ElevatedButton.styleFrom(
@@ -609,7 +611,7 @@ class _LoginPage extends State<LoginPage> {
                         Flexible(
                           child: Center(
                             child: Text(
-                              "Or sign in with",
+                              S.of(context).Or,
                               style: StyleApp.alive,
                             ),
                           ),
@@ -672,11 +674,11 @@ class _LoginPage extends State<LoginPage> {
                               child: GestureDetector(
                                 child: RichText(
                                   text: TextSpan(
-                                      text: 'Don\'t have an account? ',
+                                      text: S.of(context).Don,
                                       style: StyleApp.alive,
                                       children: [
                                         TextSpan(
-                                            text: 'Sign up here',
+                                            text: S.of(context).Signu,
                                             style: StyleApp.signup)
                                       ]),
                                 ),
@@ -698,7 +700,8 @@ class _LoginPage extends State<LoginPage> {
               ),
             ),
           ),
-        ));
+        ),
+    );
   }
 
   @override

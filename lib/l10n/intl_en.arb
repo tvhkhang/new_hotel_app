@@ -5,6 +5,7 @@
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
+  "Language": "English",
   "Welcome": "Welcome to Condotel!",
   "Alive": "Alive with your style of living!",
   "Email": "Email",

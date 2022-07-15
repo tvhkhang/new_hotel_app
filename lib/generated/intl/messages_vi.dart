@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sống với phong cách sống của bạn!"),
         "Don": MessageLookupByLibrary.simpleMessage("Bạn không có tài khoản? "),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
+        "Language": MessageLookupByLibrary.simpleMessage("Tiếng Việt"),
         "Or": MessageLookupByLibrary.simpleMessage("Hoặc đăng nhập với"),
         "Password": MessageLookupByLibrary.simpleMessage("Mật Khẩu"),
         "Repassword": MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),

@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `English`
+  String get Language {
+    return Intl.message(
+      'English',
+      name: 'Language',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to Condotel!`
   String get Welcome {
     return Intl.message(

@@ -22,5 +22,5 @@ class Assets
   static const userSquare='assets/icons/user-square.svg';
   static const userSquareBold='assets/icons/user-square-1.svg';
   static const facebook='assets/icons/facebook.svg';
-
+  static const language='assets/icons/language.svg';
 }

@@ -5,6 +5,7 @@
   "@helloWorld": {
     "description": "xin chào bạn!"
   },
+  "Language": "Tiếng Việt",
   "Welcome" : "Chào mừng đến với Codotel!",
   "Alive" : "Sống với phong cách sống của bạn!",
   "Email": "Email",

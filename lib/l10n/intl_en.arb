@@ -1,1 +1,18 @@
-{}
+{
+  "@@locale": "en",
+
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "Welcome to Condotel!" : "Welcome to Condotel!",
+  "Alive with your style of living!" : "Alive with your style of living!",
+  "Email": "Email",
+  "Password" : "Password",
+  "Sign in" : "Sign in",
+  "Or sign in with": "Or sign in with",
+  "Don\\'t have an account? ": "Don\\'t have an account? ",
+  "Sign up here": "Sign up here"
+
+
+}

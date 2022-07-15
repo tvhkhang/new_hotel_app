@@ -49,6 +49,18 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Hello World!`
+  String get helloWorld {
+    return Intl.message(
+      'Hello World!',
+      name: 'helloWorld',
+      desc: 'The conventional newborn programmer greeting',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'Welcome to Condotel!' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

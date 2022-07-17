@@ -37,12 +37,14 @@ class _LoginPage extends State<LoginPage> {
         },
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: ColorApp.backgroundApp,
+            elevation: 0,
             actions: [
               Center(
                 child: Text("${S
                     .of(context)
                     .Language}"
-                ,style: StyleApp.welcome,
+                  ,style: StyleApp.welcome,
                 ),
               ),
               IconButton(
@@ -55,8 +57,7 @@ class _LoginPage extends State<LoginPage> {
               ),
 
             ],
-          ),
-          resizeToAvoidBottomInset: false,
+          ),          resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
             width: size.width,
@@ -285,6 +286,28 @@ class _LoginPage extends State<LoginPage> {
           }
         },
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: ColorApp.backgroundApp,
+            elevation: 0,
+            actions: [
+              Center(
+                child: Text("${S
+                    .of(context)
+                    .Language}"
+                  ,style: StyleApp.welcome,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  var currentLang=Localizations.localeOf(context);
+                  var locale = Locale((currentLang==Locale('en'))?'vi':'en', '');
+                  Get.updateLocale(locale);
+                },
+                icon: SvgPicture.asset(Assets.language),
+              ),
+
+            ],
+          ),
           resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
@@ -326,7 +349,7 @@ class _LoginPage extends State<LoginPage> {
                               .Welcome,
                           style: StyleApp.welcome,
                         ),
-                        flex: 4,
+                        flex: 6,
                       ),
                       Flexible(
                         child: Text(
@@ -335,7 +358,7 @@ class _LoginPage extends State<LoginPage> {
                               .Alive,
                           style: StyleApp.alive,
                         ),
-                        flex: 3,
+                        flex: 6,
                       ),
                       const Spacer(
                         flex: 3,
@@ -433,7 +456,7 @@ class _LoginPage extends State<LoginPage> {
                             style: StyleApp.alive,
                           ),
                         ),
-                        flex: 3,
+                        flex: 6,
                       ),
                       const Spacer(
                         flex: 1,
@@ -508,7 +531,7 @@ class _LoginPage extends State<LoginPage> {
                                 Navigator.pushNamed(context, "SignUpPage");
                               },
                             )),
-                        flex: 3,
+                        flex: 6,
                       ),
                       const Spacer(
                         flex: 2,
@@ -531,6 +554,28 @@ class _LoginPage extends State<LoginPage> {
           }
         },
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: ColorApp.backgroundApp,
+            elevation: 0,
+            actions: [
+              Center(
+                child: Text("${S
+                    .of(context)
+                    .Language}"
+                  ,style: StyleApp.welcome,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  var currentLang=Localizations.localeOf(context);
+                  var locale = Locale((currentLang==Locale('en'))?'vi':'en', '');
+                  Get.updateLocale(locale);
+                },
+                icon: SvgPicture.asset(Assets.language),
+              ),
+
+            ],
+          ),
           resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
@@ -572,7 +617,7 @@ class _LoginPage extends State<LoginPage> {
                               .Welcome,
                           style: StyleApp.welcome,
                         ),
-                        flex: 4,
+                        flex: 6,
                       ),
                       Flexible(
                         child: Text(
@@ -581,7 +626,7 @@ class _LoginPage extends State<LoginPage> {
                               .Alive,
                           style: StyleApp.alive,
                         ),
-                        flex: 3,
+                        flex: 6,
                       ),
                       const Spacer(
                         flex: 3,
@@ -679,7 +724,7 @@ class _LoginPage extends State<LoginPage> {
                             style: StyleApp.alive,
                           ),
                         ),
-                        flex: 3,
+                        flex: 6,
                       ),
                       const Spacer(
                         flex: 1,
@@ -754,7 +799,7 @@ class _LoginPage extends State<LoginPage> {
                                 Navigator.pushNamed(context, "SignUpPage");
                               },
                             )),
-                        flex: 3,
+                        flex: 6,
                       ),
                       const Spacer(
                         flex: 2,

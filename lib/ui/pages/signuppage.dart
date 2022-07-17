@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:new_hotel_app/ui/constants/assets.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
-import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_hotel_app/ui/modules/responsive.dart';
 import 'package:new_hotel_app/ui/widgets/buttons.dart';
@@ -58,8 +60,6 @@ class _SignUpPage extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final size_inset = MediaQuery.of(context).viewInsets;
-
     return Responsive(
       mobile: GestureDetector(
         onTap: () {
@@ -69,6 +69,36 @@ class _SignUpPage extends State<SignUpPage> {
           }
         },
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: ColorApp.backgroundApp,
+            elevation: 0,
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                Assets.arrowLeft,
+                color: ColorApp.black,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            actions: [
+              Center(
+                child: Text(
+                  "${S.of(context).Language}",
+                  style: StyleApp.welcome,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  var currentLang = Localizations.localeOf(context);
+                  var locale =
+                      Locale((currentLang == Locale('en')) ? 'vi' : 'en', '');
+                  Get.updateLocale(locale);
+                },
+                icon: SvgPicture.asset(Assets.language),
+              ),
+            ],
+          ),
           resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
@@ -77,7 +107,9 @@ class _SignUpPage extends State<SignUpPage> {
             alignment: Alignment.center,
             child: Column(
               children: [
-                Spacer(flex: 5,),
+                Spacer(
+                  flex: 5,
+                ),
                 Flexible(
                   child: Stack(
                     alignment: Alignment.bottomCenter,
@@ -143,9 +175,8 @@ class _SignUpPage extends State<SignUpPage> {
                         labelText: S.of(context).Password,
                         labelStyle: StyleApp.alive,
                         suffixIcon: IconButton(
-                          icon: Image.asset(!_stateEye
-                              ? 'assets/images/1x/eye.png'
-                              : 'assets/images/1x/eye-slash.png'),
+                          icon: SvgPicture.asset(
+                              !_stateEye ? Assets.eyeOpen : Assets.eyeClose),
                           onPressed: () {
                             setState(() {
                               _stateEye = !_stateEye;
@@ -173,9 +204,8 @@ class _SignUpPage extends State<SignUpPage> {
                         labelText: S.of(context).Repassword,
                         labelStyle: StyleApp.alive,
                         suffixIcon: IconButton(
-                          icon: Image.asset(!_stateEye
-                              ? 'assets/images/1x/eye.png'
-                              : 'assets/images/1x/eye-slash.png'),
+                          icon: SvgPicture.asset(
+                              !_stateEye ? Assets.eyeOpen : Assets.eyeClose),
                           onPressed: () {
                             setState(() {
                               _stateEye = !_stateEye;
@@ -230,6 +260,27 @@ class _SignUpPage extends State<SignUpPage> {
           }
         },
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: ColorApp.backgroundApp,
+            elevation: 0,
+            actions: [
+              Center(
+                child: Text(
+                  "${S.of(context).Language}",
+                  style: StyleApp.welcome,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  var currentLang = Localizations.localeOf(context);
+                  var locale =
+                      Locale((currentLang == Locale('en')) ? 'vi' : 'en', '');
+                  Get.updateLocale(locale);
+                },
+                icon: SvgPicture.asset(Assets.language),
+              ),
+            ],
+          ),
           resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
@@ -262,106 +313,124 @@ class _SignUpPage extends State<SignUpPage> {
                   child: Column(
                     children: [
                       Spacer(
-                        flex: 3,
+                        flex: 6,
                       ),
-                      Container(
+                      Flexible(
                         child: Text(
                           S.of(context).Welcome,
                           style: StyleApp.welcome,
                         ),
+                        flex: 6,
                       ),
-                      Container(
+                      Flexible(
                         child: Text(
                           S.of(context).Alive,
                           style: StyleApp.alive,
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 3,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
-                        child: TextForm(
-                          controller: _emailController,
-                          text: S.of(context).Email,
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
+                          child: TextForm(
+                            controller: _emailController,
+                            text: S.of(context).Email,
+                          ),
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 1,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
-                        child: TextFormField(
-                          obscureText: _stateEye,
-                          controller: _passwordController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            labelText: S.of(context).Password,
-                            labelStyle: StyleApp.alive,
-                            suffixIcon: IconButton(
-                              icon: Image.asset(!_stateEye
-                                  ? 'assets/images/1x/eye.png'
-                                  : 'assets/images/1x/eye-slash.png'),
-                              onPressed: () {
-                                setState(() {
-                                  _stateEye = !_stateEye;
-                                });
-                              },
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
+                          child: TextFormField(
+                            obscureText: _stateEye,
+                            controller: _passwordController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              labelText: S.of(context).Password,
+                              labelStyle: StyleApp.alive,
+                              suffixIcon: IconButton(
+                                icon: SvgPicture.asset(!_stateEye
+                                    ? Assets.eyeOpen
+                                    : Assets.eyeClose),
+                                onPressed: () {
+                                  setState(() {
+                                    _stateEye = !_stateEye;
+                                  });
+                                },
+                              ),
                             ),
                           ),
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 1,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
-                        child: TextFormField(
-                          obscureText: _stateEye,
-                          controller: _password2Controller,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            labelText: S.of(context).Repassword,
-                            labelStyle: StyleApp.alive,
-                            suffixIcon: IconButton(
-                              icon: Image.asset(!_stateEye
-                                  ? 'assets/images/1x/eye.png'
-                                  : 'assets/images/1x/eye-slash.png'),
-                              onPressed: () {
-                                setState(() {
-                                  _stateEye = !_stateEye;
-                                });
-                              },
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
+                          child: TextFormField(
+                            obscureText: _stateEye,
+                            controller: _password2Controller,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              labelText: S.of(context).Repassword,
+                              labelStyle: StyleApp.alive,
+                              suffixIcon: IconButton(
+                                icon: SvgPicture.asset(!_stateEye
+                                    ? Assets.eyeOpen
+                                    : Assets.eyeClose),
+                                onPressed: () {
+                                  setState(() {
+                                    _stateEye = !_stateEye;
+                                  });
+                                },
+                              ),
                             ),
                           ),
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 2,
                       ),
-                      Container(
-                        child: Row(
-                          children: [
-                            ButtonFlexible(
-                                onPressed: SignUp,
-                                text: S.of(context).Signup,
-                                color: ColorApp.blue,
-                                flex: 1,
-                                style: StyleApp.buttonSignIn),
-                          ],
+                      Flexible(
+                        child: Padding(
+                          child: Row(
+                            children: [
+                              ButtonFlexible(
+                                  onPressed: SignUp,
+                                  text: S.of(context).Signup,
+                                  color: ColorApp.blue,
+                                  flex: 1,
+                                  style: StyleApp.buttonSignIn),
+                            ],
+                          ),
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
                         ),
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 1,
                       ),
-                      Container(
+                      Flexible(
                         child: Center(
                             child: Text(
                           error,
@@ -386,6 +455,27 @@ class _SignUpPage extends State<SignUpPage> {
           }
         },
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: ColorApp.backgroundApp,
+            elevation: 0,
+            actions: [
+              Center(
+                child: Text(
+                  "${S.of(context).Language}",
+                  style: StyleApp.welcome,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  var currentLang = Localizations.localeOf(context);
+                  var locale =
+                      Locale((currentLang == Locale('en')) ? 'vi' : 'en', '');
+                  Get.updateLocale(locale);
+                },
+                icon: SvgPicture.asset(Assets.language),
+              ),
+            ],
+          ),
           resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
@@ -418,111 +508,129 @@ class _SignUpPage extends State<SignUpPage> {
                   child: Column(
                     children: [
                       Spacer(
-                        flex: 3,
+                        flex: 6,
                       ),
-                      Container(
+                      Flexible(
                         child: Text(
                           S.of(context).Welcome,
                           style: StyleApp.welcome,
                         ),
+                        flex: 6,
                       ),
-                      Container(
+                      Flexible(
                         child: Text(
                           S.of(context).Alive,
                           style: StyleApp.alive,
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 3,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
-                        child: TextForm(
-                          controller: _emailController,
-                          text: S.of(context).Email,
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
+                          child: TextForm(
+                            controller: _emailController,
+                            text: S.of(context).Email,
+                          ),
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 1,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
-                        child: TextFormField(
-                          obscureText: _stateEye,
-                          controller: _passwordController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            labelText: S.of(context).Password,
-                            labelStyle: StyleApp.alive,
-                            suffixIcon: IconButton(
-                              icon: Image.asset(!_stateEye
-                                  ? 'assets/images/1x/eye.png'
-                                  : 'assets/images/1x/eye-slash.png'),
-                              onPressed: () {
-                                setState(() {
-                                  _stateEye = !_stateEye;
-                                });
-                              },
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
+                          child: TextFormField(
+                            obscureText: _stateEye,
+                            controller: _passwordController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              labelText: S.of(context).Password,
+                              labelStyle: StyleApp.alive,
+                              suffixIcon: IconButton(
+                                icon: SvgPicture.asset(!_stateEye
+                                    ? Assets.eyeOpen
+                                    : Assets.eyeClose),
+                                onPressed: () {
+                                  setState(() {
+                                    _stateEye = !_stateEye;
+                                  });
+                                },
+                              ),
                             ),
                           ),
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 1,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
-                        child: TextFormField(
-                          obscureText: _stateEye,
-                          controller: _password2Controller,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            labelText: S.of(context).Repassword,
-                            labelStyle: StyleApp.alive,
-                            suffixIcon: IconButton(
-                              icon: Image.asset(!_stateEye
-                                  ? 'assets/images/1x/eye.png'
-                                  : 'assets/images/1x/eye-slash.png'),
-                              onPressed: () {
-                                setState(() {
-                                  _stateEye = !_stateEye;
-                                });
-                              },
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
+                          child: TextFormField(
+                            obscureText: _stateEye,
+                            controller: _password2Controller,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              labelText: S.of(context).Repassword,
+                              labelStyle: StyleApp.alive,
+                              suffixIcon: IconButton(
+                                icon: SvgPicture.asset(!_stateEye
+                                    ? Assets.eyeOpen
+                                    : Assets.eyeClose),
+                                onPressed: () {
+                                  setState(() {
+                                    _stateEye = !_stateEye;
+                                  });
+                                },
+                              ),
                             ),
                           ),
                         ),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 2,
                       ),
-                      Container(
-                        child: Row(
-                          children: [
-                            ButtonFlexible(
-                                onPressed: SignUp,
-                                text: S.of(context).Signup,
-                                color: ColorApp.blue,
-                                flex: 1,
-                                style: StyleApp.buttonSignIn),
-                          ],
+                      Flexible(
+                        child: Padding(
+                          child: Row(
+                            children: [
+                              ButtonFlexible(
+                                  onPressed: SignUp,
+                                  text: S.of(context).Signup,
+                                  color: ColorApp.blue,
+                                  flex: 1,
+                                  style: StyleApp.buttonSignIn),
+                            ],
+                          ),
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                              right: size.width * 0.08),
                         ),
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.08, right: size.width * 0.08),
+                        flex: 6,
                       ),
                       Spacer(
                         flex: 1,
                       ),
-                      Container(
+                      Flexible(
                         child: Center(
                             child: Text(
-                              error,
-                              style: StyleApp.error,
-                            )),
+                          error,
+                          style: StyleApp.error,
+                        )),
                       )
                     ],
                   ),

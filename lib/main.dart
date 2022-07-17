@@ -9,14 +9,15 @@ import 'package:new_hotel_app/ui/modules/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:new_hotel_app/generated/l10n.dart';
+
 bool shouldUseFirestoreEmulator = false;
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   if (!kIsWeb) FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+
   );
   FirebaseAuth.instance.signOut();
   runApp(const MyApp());

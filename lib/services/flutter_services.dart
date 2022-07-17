@@ -5,8 +5,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
   Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAccount? googleUser = await GoogleSignIn(
+            clientId:
+                "577782014414-mvdme6bj7pc79jqgcr8tjq7o25ba8t0m.apps.googleusercontent.com")
+        .signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
@@ -24,6 +28,4 @@ class FacebookSignInProvider extends ChangeNotifier {
     notifyListeners();
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
-
-
 }

@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,7 @@ import 'package:new_hotel_app/services/flutter_services.dart';
 import 'package:new_hotel_app/ui/constants/assets.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
+import 'package:new_hotel_app/ui/modules/utils.dart';
 import 'package:new_hotel_app/ui/modules/responsive.dart';
 import 'package:new_hotel_app/ui/widgets/textformfield.dart';
 
@@ -24,9 +26,7 @@ class _LoginPage extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery
-        .of(context)
-        .size;
+    final size = MediaQuery.of(context).size;
     return Responsive(
       mobile: GestureDetector(
         onTap: () {
@@ -37,31 +37,38 @@ class _LoginPage extends State<LoginPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: ColorApp.backgroundApp,
             elevation: 0,
             actions: [
+              IconButton(
+                onPressed: () {
+                  Get.changeTheme(
+                      Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+                },
+                icon: SvgPicture.asset(
+                  Assets.darkIcon,
+                ),
+              ),
               Center(
-                child: Text("${S
-                    .of(context)
-                    .Language}"
-                  ,style: StyleApp.welcome,
+                child: Text(
+                  S.of(context).Language,
+                  style: StyleApp.welcome,
                 ),
               ),
               IconButton(
                 onPressed: () {
-                  var currentLang=Localizations.localeOf(context);
-                  var locale = Locale((currentLang==Locale('en'))?'vi':'en', '');
+                  var currentLang = Localizations.localeOf(context);
+                  var locale = Locale(
+                      (currentLang == const Locale('en')) ? 'vi' : 'en', '');
                   Get.updateLocale(locale);
                 },
                 icon: SvgPicture.asset(Assets.language),
               ),
-
             ],
-          ),          resizeToAvoidBottomInset: false,
+          ),
+          resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
             width: size.width,
-            color: ColorApp.backgroundApp,
             alignment: Alignment.center,
             child: Column(
               children: [
@@ -89,18 +96,14 @@ class _LoginPage extends State<LoginPage> {
                 ),
                 Flexible(
                   child: Text(
-                    S
-                        .of(context)
-                        .Welcome,
+                    S.of(context).Welcome,
                     style: StyleApp.welcome,
                   ),
                   flex: 4,
                 ),
                 Flexible(
                   child: Text(
-                    S
-                        .of(context)
-                        .Alive,
+                    S.of(context).Alive,
                     style: StyleApp.alive,
                   ),
                   flex: 3,
@@ -114,9 +117,7 @@ class _LoginPage extends State<LoginPage> {
                         left: size.width * 0.08, right: size.width * 0.08),
                     child: TextForm(
                       controller: _emailController,
-                      text: S
-                          .of(context)
-                          .Email,
+                      text: S.of(context).Email,
                     ),
                   ),
                   flex: 6,
@@ -134,9 +135,7 @@ class _LoginPage extends State<LoginPage> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8)),
-                        labelText: S
-                            .of(context)
-                            .Password,
+                        labelText: S.of(context).Password,
                         labelStyle: StyleApp.alive,
                         suffixIcon: IconButton(
                           icon: SvgPicture.asset(
@@ -162,9 +161,7 @@ class _LoginPage extends State<LoginPage> {
                         Flexible(
                           child: ElevatedButton(
                             child: Text(
-                              S
-                                  .of(context)
-                                  .Signi,
+                              S.of(context).Signi,
                               style: StyleApp.buttonSignIn,
                             ),
                             style: ElevatedButton.styleFrom(
@@ -190,9 +187,7 @@ class _LoginPage extends State<LoginPage> {
                 Flexible(
                   child: Center(
                     child: Text(
-                      S
-                          .of(context)
-                          .Or,
+                      S.of(context).Or,
                       style: StyleApp.alive,
                     ),
                   ),
@@ -231,7 +226,7 @@ class _LoginPage extends State<LoginPage> {
                         child: ElevatedButton(
                           child: SvgPicture.asset(Assets.facebook),
                           onPressed:
-                          FacebookSignInProvider().signInWithFacebook,
+                              FacebookSignInProvider().signInWithFacebook,
                           style: ElevatedButton.styleFrom(
                               minimumSize: const Size(0, 53),
                               primary: ColorApp.white,
@@ -250,24 +245,20 @@ class _LoginPage extends State<LoginPage> {
                 Flexible(
                   child: Center(
                       child: GestureDetector(
-                        child: RichText(
-                          text: TextSpan(
-                              text: S
-                                  .of(context)
-                                  .Don,
-                              style: StyleApp.alive,
-                              children: [
-                                TextSpan(
-                                    text: S
-                                        .of(context)
-                                        .Signu,
-                                    style: StyleApp.signup)
-                              ]),
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(context, "SignUpPage");
-                        },
-                      )),
+                    child: RichText(
+                      text: TextSpan(
+                          text: S.of(context).Don,
+                          style: StyleApp.alive,
+                          children: [
+                            TextSpan(
+                                text: S.of(context).Signu,
+                                style: StyleApp.signup)
+                          ]),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, "SignUpPage");
+                    },
+                  )),
                   flex: 3,
                 ),
                 const Spacer(
@@ -287,32 +278,38 @@ class _LoginPage extends State<LoginPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: ColorApp.backgroundApp,
             elevation: 0,
             actions: [
+              IconButton(
+                onPressed: () {
+                  Get.changeTheme(
+                      Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+                },
+                icon: SvgPicture.asset(
+                  Assets.darkIcon,
+                ),
+              ),
               Center(
-                child: Text("${S
-                    .of(context)
-                    .Language}"
-                  ,style: StyleApp.welcome,
+                child: Text(
+                  S.of(context).Language,
+                  style: StyleApp.welcome,
                 ),
               ),
               IconButton(
                 onPressed: () {
-                  var currentLang=Localizations.localeOf(context);
-                  var locale = Locale((currentLang==Locale('en'))?'vi':'en', '');
+                  var currentLang = Localizations.localeOf(context);
+                  var locale = Locale(
+                      (currentLang == const Locale('en')) ? 'vi' : 'en', '');
                   Get.updateLocale(locale);
                 },
                 icon: SvgPicture.asset(Assets.language),
               ),
-
             ],
           ),
           resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
             width: size.width,
-            color: ColorApp.backgroundApp,
             alignment: Alignment.center,
             child: Row(
               children: [
@@ -344,18 +341,14 @@ class _LoginPage extends State<LoginPage> {
                       ),
                       Flexible(
                         child: Text(
-                          S
-                              .of(context)
-                              .Welcome,
+                          S.of(context).Welcome,
                           style: StyleApp.welcome,
                         ),
                         flex: 6,
                       ),
                       Flexible(
                         child: Text(
-                          S
-                              .of(context)
-                              .Alive,
+                          S.of(context).Alive,
                           style: StyleApp.alive,
                         ),
                         flex: 6,
@@ -370,9 +363,7 @@ class _LoginPage extends State<LoginPage> {
                               right: size.width * 0.08),
                           child: TextForm(
                             controller: _emailController,
-                            text: S
-                                .of(context)
-                                .Email,
+                            text: S.of(context).Email,
                           ),
                         ),
                         flex: 6,
@@ -391,9 +382,7 @@ class _LoginPage extends State<LoginPage> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8)),
-                              labelText: S
-                                  .of(context)
-                                  .Password,
+                              labelText: S.of(context).Password,
                               labelStyle: StyleApp.alive,
                               suffixIcon: IconButton(
                                 icon: SvgPicture.asset(!_stateEye
@@ -420,9 +409,7 @@ class _LoginPage extends State<LoginPage> {
                               Flexible(
                                 child: ElevatedButton(
                                   child: Text(
-                                    S
-                                        .of(context)
-                                        .Signi,
+                                    S.of(context).Signi,
                                     style: StyleApp.buttonSignIn,
                                   ),
                                   style: ElevatedButton.styleFrom(
@@ -430,7 +417,7 @@ class _LoginPage extends State<LoginPage> {
                                       primary: ColorApp.blue,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(8.0))),
+                                              BorderRadius.circular(8.0))),
                                   onPressed: signInEmailPass,
                                 ),
                                 flex: 1,
@@ -450,9 +437,7 @@ class _LoginPage extends State<LoginPage> {
                       Flexible(
                         child: Center(
                           child: Text(
-                            S
-                                .of(context)
-                                .Or,
+                            S.of(context).Or,
                             style: StyleApp.alive,
                           ),
                         ),
@@ -475,13 +460,13 @@ class _LoginPage extends State<LoginPage> {
                                   height: 18,
                                 ),
                                 onPressed:
-                                GoogleSignInProvider().signInWithGoogle,
+                                    GoogleSignInProvider().signInWithGoogle,
                                 style: ElevatedButton.styleFrom(
                                     minimumSize: const Size(0, 53),
                                     primary: ColorApp.white,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(8.0))),
+                                            BorderRadius.circular(8.0))),
                               ),
                             ),
                             const Spacer(
@@ -493,13 +478,13 @@ class _LoginPage extends State<LoginPage> {
                               child: ElevatedButton(
                                 child: SvgPicture.asset(Assets.facebook),
                                 onPressed:
-                                FacebookSignInProvider().signInWithFacebook,
+                                    FacebookSignInProvider().signInWithFacebook,
                                 style: ElevatedButton.styleFrom(
                                     minimumSize: const Size(0, 53),
                                     primary: ColorApp.white,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(8.0))),
+                                            BorderRadius.circular(8.0))),
                               ),
                             ),
                             SizedBox(width: size.width * 0.08),
@@ -513,24 +498,20 @@ class _LoginPage extends State<LoginPage> {
                       Flexible(
                         child: Center(
                             child: GestureDetector(
-                              child: RichText(
-                                text: TextSpan(
-                                    text: S
-                                        .of(context)
-                                        .Don,
-                                    style: StyleApp.alive,
-                                    children: [
-                                      TextSpan(
-                                          text: S
-                                              .of(context)
-                                              .Signu,
-                                          style: StyleApp.signup)
-                                    ]),
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(context, "SignUpPage");
-                              },
-                            )),
+                          child: RichText(
+                            text: TextSpan(
+                                text: S.of(context).Don,
+                                style: StyleApp.alive,
+                                children: [
+                                  TextSpan(
+                                      text: S.of(context).Signu,
+                                      style: StyleApp.signup)
+                                ]),
+                          ),
+                          onTap: () {
+                            Navigator.pushNamed(context, "SignUpPage");
+                          },
+                        )),
                         flex: 6,
                       ),
                       const Spacer(
@@ -555,32 +536,38 @@ class _LoginPage extends State<LoginPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: ColorApp.backgroundApp,
             elevation: 0,
             actions: [
+              IconButton(
+                onPressed: () {
+                  Get.changeTheme(
+                      Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+                },
+                icon: SvgPicture.asset(
+                  Assets.darkIcon,
+                ),
+              ),
               Center(
-                child: Text("${S
-                    .of(context)
-                    .Language}"
-                  ,style: StyleApp.welcome,
+                child: Text(
+                  S.of(context).Language,
+                  style: StyleApp.welcome,
                 ),
               ),
               IconButton(
                 onPressed: () {
-                  var currentLang=Localizations.localeOf(context);
-                  var locale = Locale((currentLang==Locale('en'))?'vi':'en', '');
+                  var currentLang = Localizations.localeOf(context);
+                  var locale = Locale(
+                      (currentLang == const Locale('en')) ? 'vi' : 'en', '');
                   Get.updateLocale(locale);
                 },
                 icon: SvgPicture.asset(Assets.language),
               ),
-
             ],
           ),
           resizeToAvoidBottomInset: false,
           body: Container(
             height: size.height,
             width: size.width,
-            color: ColorApp.backgroundApp,
             alignment: Alignment.center,
             child: Row(
               children: [
@@ -612,18 +599,14 @@ class _LoginPage extends State<LoginPage> {
                       ),
                       Flexible(
                         child: Text(
-                          S
-                              .of(context)
-                              .Welcome,
+                          S.of(context).Welcome,
                           style: StyleApp.welcome,
                         ),
                         flex: 6,
                       ),
                       Flexible(
                         child: Text(
-                          S
-                              .of(context)
-                              .Alive,
+                          S.of(context).Alive,
                           style: StyleApp.alive,
                         ),
                         flex: 6,
@@ -638,9 +621,7 @@ class _LoginPage extends State<LoginPage> {
                               right: size.width * 0.08),
                           child: TextForm(
                             controller: _emailController,
-                            text: S
-                                .of(context)
-                                .Email,
+                            text: S.of(context).Email,
                           ),
                         ),
                         flex: 6,
@@ -659,9 +640,7 @@ class _LoginPage extends State<LoginPage> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8)),
-                              labelText: S
-                                  .of(context)
-                                  .Password,
+                              labelText: S.of(context).Password,
                               labelStyle: StyleApp.alive,
                               suffixIcon: IconButton(
                                 icon: SvgPicture.asset(!_stateEye
@@ -688,9 +667,7 @@ class _LoginPage extends State<LoginPage> {
                               Flexible(
                                 child: ElevatedButton(
                                   child: Text(
-                                    S
-                                        .of(context)
-                                        .Signi,
+                                    S.of(context).Signi,
                                     style: StyleApp.buttonSignIn,
                                   ),
                                   style: ElevatedButton.styleFrom(
@@ -698,7 +675,7 @@ class _LoginPage extends State<LoginPage> {
                                       primary: ColorApp.blue,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(8.0))),
+                                              BorderRadius.circular(8.0))),
                                   onPressed: signInEmailPass,
                                 ),
                                 flex: 1,
@@ -718,9 +695,7 @@ class _LoginPage extends State<LoginPage> {
                       Flexible(
                         child: Center(
                           child: Text(
-                            S
-                                .of(context)
-                                .Or,
+                            S.of(context).Or,
                             style: StyleApp.alive,
                           ),
                         ),
@@ -743,13 +718,13 @@ class _LoginPage extends State<LoginPage> {
                                   height: 18,
                                 ),
                                 onPressed:
-                                GoogleSignInProvider().signInWithGoogle,
+                                    GoogleSignInProvider().signInWithGoogle,
                                 style: ElevatedButton.styleFrom(
                                     minimumSize: const Size(0, 53),
                                     primary: ColorApp.white,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(8.0))),
+                                            BorderRadius.circular(8.0))),
                               ),
                             ),
                             const Spacer(
@@ -761,13 +736,13 @@ class _LoginPage extends State<LoginPage> {
                               child: ElevatedButton(
                                 child: SvgPicture.asset(Assets.facebook),
                                 onPressed:
-                                FacebookSignInProvider().signInWithFacebook,
+                                    FacebookSignInProvider().signInWithFacebook,
                                 style: ElevatedButton.styleFrom(
                                     minimumSize: const Size(0, 53),
                                     primary: ColorApp.white,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(8.0))),
+                                            BorderRadius.circular(8.0))),
                               ),
                             ),
                             SizedBox(width: size.width * 0.08),
@@ -781,24 +756,20 @@ class _LoginPage extends State<LoginPage> {
                       Flexible(
                         child: Center(
                             child: GestureDetector(
-                              child: RichText(
-                                text: TextSpan(
-                                    text: S
-                                        .of(context)
-                                        .Don,
-                                    style: StyleApp.alive,
-                                    children: [
-                                      TextSpan(
-                                          text: S
-                                              .of(context)
-                                              .Signu,
-                                          style: StyleApp.signup)
-                                    ]),
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(context, "SignUpPage");
-                              },
-                            )),
+                          child: RichText(
+                            text: TextSpan(
+                                text: S.of(context).Don,
+                                style: StyleApp.alive,
+                                children: [
+                                  TextSpan(
+                                      text: S.of(context).Signu,
+                                      style: StyleApp.signup)
+                                ]),
+                          ),
+                          onTap: () {
+                            Navigator.pushNamed(context, "SignUpPage");
+                          },
+                        )),
                         flex: 6,
                       ),
                       const Spacer(
@@ -843,9 +814,29 @@ class _LoginPage extends State<LoginPage> {
   }
 
   Future<void> signInEmailPass() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+    } catch (e) {
+      String result;
+      result = e.toString();
+      final snackBar = SnackBar(
+        content: Text(e.toString()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      final res = await Connectivity().checkConnectivity();
+      showConnectivitySnackBar(res);
+    }
+  }
+
+  void showConnectivitySnackBar(ConnectivityResult result) {
+    final hasInternet = result != ConnectivityResult.none;
+    final message = hasInternet
+        ? "You have again ${result.toString()}"
+        : "You have no internet";
+    final color = hasInternet ? Colors.green : Colors.red;
+    Utils.showTopSnackBar(context, message, color);
   }
 }
 /*

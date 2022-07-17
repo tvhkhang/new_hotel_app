@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,7 @@ import 'package:new_hotel_app/ui/constants/assets.dart';
 import 'package:new_hotel_app/ui/constants/colors.dart';
 import 'package:new_hotel_app/ui/constants/styles.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:new_hotel_app/ui/modules/utils.dart';
 import 'package:new_hotel_app/ui/modules/responsive.dart';
 import 'package:new_hotel_app/ui/widgets/buttons.dart';
 import 'package:new_hotel_app/ui/widgets/textformfield.dart';
@@ -33,16 +35,29 @@ class _SignUpPage extends State<SignUpPage> {
       error = " ";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('The password provided is too weak.')));
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('The account already exists for that email.')));
       }
       stateSignUp = false;
     }
     if (_password2Controller != _passwordController) {
       error = 'Password and confirm password must same';
     }
+    final res = await Connectivity().checkConnectivity();
+    showConnectivitySnackBar(res);
     if (stateSignUp) Navigator.pop(context);
+  }
+
+  void showConnectivitySnackBar(ConnectivityResult result) {
+    final hasInternet = result != ConnectivityResult.none;
+    final message = hasInternet
+        ? "You have again ${result.toString()}"
+        : "You have no internet";
+    final color = hasInternet ? Colors.green : Colors.red;
+    Utils.showTopSnackBar(context, message, color);
   }
 
   @override
@@ -70,7 +85,6 @@ class _SignUpPage extends State<SignUpPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: ColorApp.backgroundApp,
             elevation: 0,
             leading: IconButton(
               icon: SvgPicture.asset(
@@ -82,6 +96,15 @@ class _SignUpPage extends State<SignUpPage> {
               },
             ),
             actions: [
+              IconButton(
+                onPressed: () {
+                  Get.changeTheme(
+                      Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+                },
+                icon: SvgPicture.asset(
+                  Assets.darkIcon,
+                ),
+              ),
               Center(
                 child: Text(
                   "${S.of(context).Language}",
@@ -103,7 +126,6 @@ class _SignUpPage extends State<SignUpPage> {
           body: Container(
             height: size.height,
             width: size.width,
-            color: ColorApp.backgroundApp,
             alignment: Alignment.center,
             child: Column(
               children: [
@@ -261,9 +283,17 @@ class _SignUpPage extends State<SignUpPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: ColorApp.backgroundApp,
             elevation: 0,
             actions: [
+              IconButton(
+                onPressed: () {
+                  Get.changeTheme(
+                      Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+                },
+                icon: SvgPicture.asset(
+                  Assets.darkIcon,
+                ),
+              ),
               Center(
                 child: Text(
                   "${S.of(context).Language}",
@@ -285,7 +315,6 @@ class _SignUpPage extends State<SignUpPage> {
           body: Container(
             height: size.height,
             width: size.width,
-            color: ColorApp.backgroundApp,
             alignment: Alignment.center,
             child: Row(
               children: [
@@ -456,9 +485,17 @@ class _SignUpPage extends State<SignUpPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: ColorApp.backgroundApp,
             elevation: 0,
             actions: [
+              IconButton(
+                onPressed: () {
+                  Get.changeTheme(
+                      Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+                },
+                icon: SvgPicture.asset(
+                  Assets.darkIcon,
+                ),
+              ),
               Center(
                 child: Text(
                   "${S.of(context).Language}",
@@ -480,7 +517,6 @@ class _SignUpPage extends State<SignUpPage> {
           body: Container(
             height: size.height,
             width: size.width,
-            color: ColorApp.backgroundApp,
             alignment: Alignment.center,
             child: Row(
               children: [

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:new_hotel_app/provider/theme_provider.dart';
 import 'package:new_hotel_app/ui/modules/route_name.dart';
 import 'package:new_hotel_app/ui/modules/router.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'firebase_options.dart';
 import 'package:new_hotel_app/generated/l10n.dart';
 
@@ -17,7 +19,6 @@ Future<void> main() async {
   if (!kIsWeb) FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-
   );
   FirebaseAuth.instance.signOut();
   runApp(const MyApp());
@@ -31,18 +32,23 @@ class MyApp extends StatelessWidget {
     if (!kIsWeb) {
       FlutterNativeSplash.remove();
     }
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      locale: new Locale('vi'),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      initialRoute: RouteName.home,
-      onGenerateRoute: RouterK.generateRoute,
+    return OverlaySupport.global(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.system,
+        theme: MyThemes.lightTheme,
+        darkTheme: MyThemes.darkTheme,
+        locale: new Locale('vi'),
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        initialRoute: RouteName.home,
+        onGenerateRoute: RouterK.generateRoute,
+      ),
     );
   }
 }

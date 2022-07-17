@@ -22,6 +22,14 @@ class GoogleSignInProvider extends ChangeNotifier {
 
 class FacebookSignInProvider extends ChangeNotifier {
   Future<UserCredential> signInWithFacebook() async {
+    if (kIsWeb) {
+      await FacebookAuth.instance.webInitialize(
+        appId: "3287911264823604",
+        cookie: true,
+        xfbml: true,
+        version: "v14.0",
+      );
+    }
     final LoginResult loginResult = await FacebookAuth.instance.login();
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
